@@ -124,7 +124,6 @@
   /* Sections */
   section { padding: 45px 0; border-top: 1px solid var(--card-border); }
   .section-head { display: flex; align-items: center; gap: 12px; margin-bottom: 26px; }
-  .section-num { background: var(--green-light); color: var(--green-primary); font-weight: 700; font-size: 13px; padding: 3px 9px; border-radius: 6px; }
   h2.section-title { font-size: clamp(22px, 2.8vw, 30px); color: var(--green-primary); }
 
   /* Section 1 - Timeline & Key Skills */
@@ -149,6 +148,11 @@
   .info-card {
     background: #ffffff; border: 1px solid var(--card-border);
     border-radius: 14px; padding: 22px; box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .info-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
   }
   .info-card h3 { font-size: 16px; color: var(--green-primary); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
 
@@ -161,8 +165,24 @@
   .contact-btn {
     background: #ffffff; border: 1px solid var(--card-border); padding: 10px 18px;
     border-radius: 10px; font-size: 13.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;
+    transition: all 0.2s ease;
   }
-  .contact-btn:hover { background: var(--warm-accent); color: #ffffff; }
+  .contact-btn:hover { background: var(--warm-accent); color: #ffffff; transform: translateY(-2px); }
+
+  /* -------------------------------------------------------------
+     Animations de défilement (Scroll Animations)
+  ------------------------------------------------------------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
   @media (max-width: 920px) {
     .layout-container { flex-direction: column-reverse; }
@@ -180,10 +200,10 @@
   <!-- Contenu Principal -->
   <main class="main-content">
 
-    <!-- 1. Présentation -->
-    <header class="hero" id="presentation">
+    <!-- Présentation -->
+    <header class="hero reveal" id="presentation">
       
-      <!-- Alignement du Cadre Photo et des Titres -->
+      <!-- Cadre Photo et Titres -->
       <div class="hero-top-layout" style="display: flex; gap: 30px; align-items: center; flex-wrap: wrap;">
         
         <!-- Cadre Photo -->
@@ -203,13 +223,11 @@
         ">
           <i class="fa-solid fa-user-large" style="font-size: 45px; color: var(--green-soft); margin-bottom: 6px;"></i>
           <span style="font-size: 11px; color: var(--text-muted); font-weight: 600;">Ta Photo</span>
-          <!-- Quand tu auras la photo, remplace les deux lignes ci-dessus par : -->
-          <!-- <img src="ma-photo.jpg" alt="Lohan Froissard Samain" style="width: 100%; height: 100%; object-fit: cover;"> -->
         </div>
 
-        <!-- Informations principales -->
+        <!-- Infos principales -->
         <div style="flex: 1; min-width: 260px;">
-          <div class="kicker"><i class="fa-solid fa-graduation-cap"></i> Portfolio Oral — BTS SIO SISR[cite: 2]</div>
+          <div class="kicker"><i class="fa-solid fa-graduation-cap"></i> Portfolio Oral — BTS SIO SISR</div>
           <h1 class="title">Lohan Froissard Samain</h1>
           <p class="hero-sub">
             <strong>« Administrer les réseaux, c'est bien. Les sécuriser en comprenant la logique d'attaque, c'est ma priorité. »</strong>
@@ -218,36 +236,37 @@
 
       </div>
 
-      <!-- Mini descriptif -->
+      <!-- Description -->
       <p style="margin-top: 20px; color: var(--text-muted); font-size: 15px;">
-        Étudiant en BTS SIO option SISR à l'UTEC Melun[cite: 2]. Passionné d'infrastructures système, de virtualisation et de cybersécurité[cite: 2].
+        Étudiant en BTS SIO option SISR à l'UTEC Melun et apprenti Administrateur Systèmes & Réseaux chez <strong>VINCI Smart Secure Systems</strong>. Passionné d'infrastructures système, de virtualisation et de cybersécurité.
       </p>
 
       <div class="hero-tags">
-        <span class="tag"><i class="fa-solid fa-id-card"></i> 18 ans — Permis B[cite: 2]</span>
-        <span class="tag"><i class="fa-solid fa-certificate"></i> PIX : 531 / 896[cite: 2]</span>
-        <span class="tag"><i class="fa-solid fa-language"></i> Anglais Technique (B2/C1)[cite: 2]</span>
+        <span class="tag"><i class="fa-solid fa-id-card"></i> 18 ans — Permis B</span>
+        <span class="tag"><i class="fa-solid fa-building-user"></i> VINCI Smart Secure Systems</span>
+        <span class="tag"><i class="fa-solid fa-certificate"></i> PIX : 531 / 896</span>
+        <span class="tag"><i class="fa-solid fa-language"></i> Anglais Technique (B2/C1)</span>
       </div>
 
-      <!-- Timeline / Frise Chronologique -->
+      <!-- Timeline / Parcours -->
       <h3 style="margin-top: 35px; margin-bottom: 15px; font-size: 18px; color: var(--green-primary);">
         <i class="fa-solid fa-timeline"></i> Parcours & Frise Chronologique
       </h3>
       <div class="timeline">
         <div class="timeline-item">
           <span class="timeline-date">2026 — Présent</span>
-          <div class="timeline-title">BTS SIO SISR</div>
-          <p style="font-size: 13px; color: var(--text-muted);">Formation en apprentissage à l'UTEC Melun (77)[cite: 2].</p>
+          <div class="timeline-title">Apprenti Systèmes & Réseaux — VINCI Smart Secure Systems</div>
+          <p style="font-size: 13px; color: var(--text-muted);">Gestion d'infrastructure, support N1/N2 et sécurisation des réseaux d'entreprise.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-date">2026 — Présent</span>
+          <div class="timeline-title">BTS SIO SISR — UTEC Melun</div>
+          <p style="font-size: 13px; color: var(--text-muted);">Formation en alternance spécialisée en réseaux et cybersécurité (77).</p>
         </div>
         <div class="timeline-item">
           <span class="timeline-date">2026</span>
           <div class="timeline-title">Baccalauréat Général (SES / SVT)</div>
-          <p style="font-size: 13px; color: var(--text-muted);">Obtention du Bac[cite: 2]. Orientation vers les systèmes et réseaux informatiques[cite: 2].</p>
-        </div>
-        <div class="timeline-item">
-          <span class="timeline-date">2026</span>
-          <div class="timeline-title">Agent Technique Saisonnier — Mairie de Courpalay</div>
-          <p style="font-size: 13px; color: var(--text-muted);">Maintenance logistique et autonomie sur le terrain[cite: 2].</p>
+          <p style="font-size: 13px; color: var(--text-muted);">Obtention du Bac. Orientation vers les systèmes et réseaux informatiques.</p>
         </div>
       </div>
 
@@ -258,30 +277,29 @@
       <div class="key-skills-3">
         <div class="key-skill-card">
           <h4>1. Admin Systèmes & OS</h4>
-          <p>Windows Server (AD DS, DNS, DHCP), Linux (Debian, Ubuntu, Mint)[cite: 2].</p>
+          <p>Windows Server (AD DS, DNS, DHCP), Linux (Debian, Ubuntu, Mint).</p>
         </div>
         <div class="key-skill-card">
           <h4>2. Virtualisation & Réseau</h4>
-          <p>VMware, VirtualBox, Hyper-V, VLANs, Adressage IPv4, VPN[cite: 2].</p>
+          <p>VMware, VirtualBox, Hyper-V, VLANs, Adressage IPv4, VPN.</p>
         </div>
         <div class="key-skill-card">
           <h4>3. Scripting & Sécurité</h4>
-          <p>Automatisation Python/Bash, bonnes pratiques ANSSI, analyse Hexa[cite: 2].</p>
+          <p>Automatisation Python/Bash, bonnes pratiques ANSSI, analyse Hexa.</p>
         </div>
       </div>
 
     </header>
 
-    <!-- 2. École (UTEC) -->
-    <section id="ecole">
+    <!-- École (UTEC) -->
+    <section id="ecole" class="reveal">
       <div class="section-head">
-        <span class="section-num">02</span>
         <h2 class="section-title">École : UTEC Melun</h2>
       </div>
       <div class="info-card" style="margin-bottom: 18px;">
         <h3><i class="fa-solid fa-school"></i> Présentation de l'établissement</h3>
         <p style="font-size: 14.5px; color: var(--text-muted);">
-          L'UTEC Melun (CCI Seine-et-Marne) est un centre de formation d'apprentis majeur en Île-de-France, spécialisé dans les métiers du numérique, du tertiaire et des technologies[cite: 2].
+          L'UTEC Melun (CCI Seine-et-Marne) est un centre de formation d'apprentis majeur en Île-de-France, spécialisé dans les métiers du numérique, du tertiaire et des technologies.
         </p>
       </div>
 
@@ -304,127 +322,72 @@
         <div class="info-card">
           <h3><i class="fa-solid fa-layer-group"></i> Domaine de compétences</h3>
           <p style="font-size: 14px; color: var(--text-muted);">
-            Conception d'architectures réseau, administration système avancée, supervision de parc informatique, sécurisation des données[cite: 2].
+            Conception d'architectures réseau, administration système avancée, supervision de parc informatique, sécurisation des données.
           </p>
         </div>
         <div class="info-card">
           <h3><i class="fa-solid fa-book-bookmark"></i> Le BTS SIO option SISR</h3>
           <p style="font-size: 14px; color: var(--text-muted);">
-            L'option SISR forme des spécialistes capables de gérer le réseau d'une entreprise, de déployer des services et d'assurer la continuité d'activité[cite: 2].
+            L'option SISR forme des spécialistes capables de gérer le réseau d'une entreprise, de déployer des services et d'assurer la continuité d'activité.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- 3. Entreprise -->
-    <section id="entreprise">
+    <!-- Entreprise -->
+    <section id="entreprise" class="reveal">
       <div class="section-head">
-        <span class="section-num">03</span>
-        <h2 class="section-title">Entreprise</h2>
+        <h2 class="section-title">Entreprise : VINCI Smart Secure Systems</h2>
       </div>
       
       <div class="grid-2">
         <div class="info-card">
           <h3><i class="fa-solid fa-building"></i> Informations Générales</h3>
           <ul style="list-style: none; font-size: 13.5px; color: var(--text-muted); display: flex; flex-direction: column; gap: 8px;">
-            <li><strong>Date de création :</strong> À compléter</li>
-            <li><strong>Forme Juridique :</strong> Secteur Privé / Public</li>
-            <li><strong>Nombre de salariés :</strong> À compléter</li>
-            <li><strong>Chiffre d'Affaires :</strong> À compléter</li>
+            <li><strong>Entreprise :</strong> VINCI Smart Secure Systems</li>
+            <li><strong>Secteur :</strong> Groupe VINCI (Energies & Télécoms)</li>
+            <li><strong>Domaine :</strong> Systèmes de sécurité, réseaux & sûreté électronique</li>
+            <li><strong>Statut :</strong> Apprenti Systèmes & Réseaux</li>
           </ul>
         </div>
         <div class="info-card">
-          <h3><i class="fa-solid fa-user-gear"></i> Mon Service & Tâches</h3>
+          <h3><i class="fa-solid fa-user-gear"></i> Mon Service & Missions</h3>
           <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 8px;">
-            <strong>Service :</strong> Pôle Informatique & Support N1/N2[cite: 2]
+            <strong>Service :</strong> Direction des Systèmes d'Information / Support IT
           </p>
           <ul style="font-size: 13px; color: var(--text-muted); padding-left: 16px;">
-            <li>Support utilisateur & traitement de tickets[cite: 2].</li>
-            <li>Maintien en condition opérationnelle (MCO) des serveurs[cite: 2].</li>
-            <li>Gestion des accès Active Directory & sauvegardes[cite: 2].</li>
+            <li>Support niveau 1/2 aux collaborateurs et résolution d'incidents.</li>
+            <li>Administration Active Directory, gestion des accès et droits.</li>
+            <li>Supervision du parc informatique, des équipements réseau et sauvegardes.</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- 4. Projets -->
-    <section id="projets">
+    <!-- Compétences -->
+    <section id="competences" class="reveal">
       <div class="section-head">
-        <span class="section-num">04</span>
-        <h2 class="section-title">Projets Réalisés</h2>
-      </div>
-
-      <div class="grid-3">
-        <div class="info-card">
-          <span style="font-size: 11px; font-weight:700; color:var(--green-primary); text-transform:uppercase;">Utec (Académique)</span>
-          <h3 style="margin-top: 6px;">Maquettage Infra SI</h3>
-          <p style="font-size: 13px; color: var(--text-muted);">
-            Déploiement d'une infrastructure virtuelle d'entreprise sous Hyper-V/VMware (Windows Server, AD, DNS, DHCP, scripts Python)[cite: 2].
-          </p>
-        </div>
-
-        <div class="info-card">
-          <span style="font-size: 11px; font-weight:700; color:var(--warm-accent); text-transform:uppercase;">Entreprise</span>
-          <h3 style="margin-top: 6px;">Gestion Support & Parc</h3>
-          <p style="font-size: 13px; color: var(--text-muted);">
-            Résolution de tickets N1/N2, déploiement de postes clients et configuration des droits Active Directory[cite: 2].
-          </p>
-        </div>
-
-        <div class="info-card">
-          <span style="font-size: 11px; font-weight:700; color:#2e7d6e; text-transform:uppercase;">Personnel</span>
-          <h3 style="margin-top: 6px;">Lab Reverse & Émulation</h3>
-          <p style="font-size: 13px; color: var(--text-muted);">
-            Analyse hexadécimale bas niveau de fichiers, scripts d'automatisation Bash/Linux et émulation de consoles[cite: 2].
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. Compétences -->
-    <section id="competences">
-      <div class="section-head">
-        <span class="section-num">05</span>
         <h2 class="section-title">Compétences Techniques</h2>
       </div>
 
       <div class="grid-3">
         <div class="info-card">
           <h3><i class="fa-solid fa-network-wired"></i> Réseau</h3>
-          <p style="font-size: 13px; color: var(--text-muted);">TCP/IP, IPv4, VLANs, VPN, Routage, Commutation[cite: 2].</p>
+          <p style="font-size: 13px; color: var(--text-muted);">TCP/IP, IPv4, VLANs, VPN, Routage, Commutation.</p>
         </div>
         <div class="info-card">
           <h3><i class="fa-solid fa-server"></i> Systèmes</h3>
-          <p style="font-size: 13px; color: var(--text-muted);">Windows Server (AD DS, DNS, DHCP), Linux (Debian, Ubuntu, Mint), Scripting Python/Bash[cite: 2].</p>
+          <p style="font-size: 13px; color: var(--text-muted);">Windows Server (AD DS, DNS, DHCP), Linux (Debian, Ubuntu, Mint), Scripting Python/Bash.</p>
         </div>
         <div class="info-card">
           <h3><i class="fa-solid fa-shield-halved"></i> Cybersécurité</h3>
-          <p style="font-size: 13px; color: var(--text-muted);">Hardening d'OS, bonnes pratiques ANSSI, Reverse Eng. bas niveau[cite: 2].</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 6. Veille Technologique -->
-    <section id="veille">
-      <div class="section-head">
-        <span class="section-num">06</span>
-        <h2 class="section-title">Veille Technologique</h2>
-      </div>
-      <div class="info-card">
-        <h3><i class="fa-solid fa-rss"></i> Sujet : "L'impact de l'IA dans la Cybersécurité Défensive et Offensive"</h3>
-        <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 12px;">
-          Suivi des évolutions liées à l'automatisation des attaques (phishing ciblé par IA, malware polymorphe) et à la réponse aux incidents automatisée (SIEM/SOAR boostés à l'IA).
-        </p>
-        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-          <span class="tag"><i class="fa-solid fa-newspaper"></i> Feedly / Flux RSS</span>
-          <span class="tag"><i class="fa-solid fa-shield-cat"></i> ANSSI / Cert-FR</span>
-          <span class="tag"><i class="fa-brands fa-x-twitter"></i> Comptes Cyber / X</span>
+          <p style="font-size: 13px; color: var(--text-muted);">Hardening d'OS, bonnes pratiques ANSSI, Reverse Eng. bas niveau.</p>
         </div>
       </div>
     </section>
 
     <!-- Footer Contact -->
-    <footer class="contact" id="contact">
+    <footer class="contact reveal" id="contact">
       <h2 style="font-size: 24px; color: var(--green-primary); margin-bottom: 10px;">Contact & Liens Réseaux</h2>
       <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">Disponible pour échanger sur mes projets et mon parcours.</p>
       <div style="display: flex; gap: 12px; flex-wrap: wrap;">
@@ -432,28 +395,49 @@
         <a href="https://www.linkedin.com/in/lohan-froissard-samain-678bb63b8" target="_blank" class="contact-btn"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
         <a href="https://github.com/Evo-off" target="_blank" class="contact-btn"><i class="fa-brands fa-github"></i> GitHub</a>
       </div>
-      <p style="font-size: 12px; color: var(--text-muted); margin-top: 25px;">© Lohan Froissard Samain — UTEC Melun — BTS SIO SISR[cite: 2]</p>
+      <p style="font-size: 12px; color: var(--text-muted); margin-top: 25px;">© Lohan Froissard Samain — UTEC Melun / VINCI Smart Secure Systems — BTS SIO SISR</p>
     </footer>
 
   </main>
 
-  <!-- Navigation Latérale (Sidebar) -->
+  <!-- Navigation Latérale -->
   <nav class="sidebar-right">
     <div class="nav-header">
       <i class="fa-solid fa-seedling"></i> Portfolio Lohan
     </div>
     <ul>
-      <li><a href="#presentation"><i class="fa-solid fa-user"></i> 1. Présentation</a></li>
-      <li><a href="#ecole"><i class="fa-solid fa-school"></i> 2. École (UTEC)</a></li>
-      <li><a href="#entreprise"><i class="fa-solid fa-building"></i> 3. Entreprise</a></li>
-      <li><a href="#projets"><i class="fa-solid fa-diagram-project"></i> 4. Projets</a></li>
-      <li><a href="#competences"><i class="fa-solid fa-gears"></i> 5. Compétences</a></li>
-      <li><a href="#veille"><i class="fa-solid fa-rss"></i> 6. Veille Techno</a></li>
+      <li><a href="#presentation"><i class="fa-solid fa-user"></i> Présentation</a></li>
+      <li><a href="#ecole"><i class="fa-solid fa-school"></i> École (UTEC)</a></li>
+      <li><a href="#entreprise"><i class="fa-solid fa-building"></i> Entreprise (VINCI)</a></li>
+      <li><a href="#competences"><i class="fa-solid fa-gears"></i> Compétences</a></li>
       <li><a href="#contact"><i class="fa-solid fa-paper-plane"></i> Contact</a></li>
     </ul>
   </nav>
 
 </div>
+
+<!-- Script d'animation au défilement -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach(el => observer.observe(el));
+  });
+</script>
 
 </body>
 </html>
