@@ -6,136 +6,290 @@
 <title>Lohan Froissard Samain — Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<!-- Ajout de Font Awesome pour les icônes -->
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Icônes FontAwesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-  :root{
-    --ink:#171a24;
-    --ink-soft:#22273a;
-    --paper:#f2ede2;
-    --coral:#e8503f;
-    --teal:#3c8c86;
-    --gold:#d9a441;
-    --line:rgba(242,237,226,0.14);
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--ink);
-    color:var(--paper);
-    font-family:'Work Sans', sans-serif;
-    line-height:1.6;
-    overflow-x:hidden;
-  }
-  h1,h2,h3{
-    font-family:'Archivo Black', sans-serif;
-    font-weight:400;
-    line-height:1.05;
-    letter-spacing:-0.01em;
-  }
-  a{color:inherit;}
-  .wrap{max-width:980px; margin:0 auto; padding:0 32px;}
-
-  nav{
-    position:sticky; top:0; z-index:50;
-    background:rgba(23,26,36,0.9);
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid var(--line);
-  }
-  nav .wrap{display:flex; justify-content:space-between; align-items:center; padding:18px 32px;}
-  .nav-name{font-family:'Archivo Black', sans-serif; font-size:16px;}
-  nav ul{list-style:none; display:flex; gap:24px;}
-  nav a{text-decoration:none; font-size:13.5px; color:var(--paper); opacity:0.75; transition:opacity .2s;}
-  nav a:hover{opacity:1; color:var(--coral);}
-
-  header.hero{
-    position:relative;
-    padding:120px 0 100px;
-    overflow:hidden;
-  }
-  header.hero::before{
-    content:"";
-    position:absolute; top:-20%; right:-10%;
-    width:600px; height:600px;
-    background: repeating-linear-gradient(115deg, var(--coral) 0 3px, transparent 3px 46px);
-    opacity:0.12;
-    transform:rotate(8deg);
-    pointer-events:none;
-  }
-  .kicker{ color:var(--coral); font-size:15px; font-weight:600; margin-bottom:18px; }
-  h1.title{ font-size:clamp(40px, 7.5vw, 80px); max-width:12ch; }
-  .hero-sub{ margin-top:28px; max-width:56ch; font-size:18.5px; color:rgba(242,237,226,0.78); }
-  .hero-tags{ margin-top:34px; display:flex; gap:12px; flex-wrap:wrap; }
-  .tag{ border:1px solid var(--line); padding:8px 16px; border-radius:100px; font-size:13px; color:rgba(242,237,226,0.85); background: rgba(255,255,255,0.03); }
-
-  section{ padding:76px 0; border-top:1px solid var(--line); }
-  .section-head{ display:flex; align-items:baseline; gap:16px; margin-bottom:38px; }
-  .section-num{ color:var(--coral); font-family:'Archivo Black', sans-serif; font-size:14px; }
-  h2.section-title{ font-size:clamp(26px, 3.8vw, 38px); }
-
-  .about-grid{ display:grid; grid-template-columns:1.3fr 1fr; gap:56px; }
-  .about-grid p{ margin-bottom:18px; color:rgba(242,237,226,0.85); font-size:16.5px; }
-  .fact-card{ background:var(--ink-soft); border:1px solid var(--line); border-radius:8px; padding:26px; }
-  .fact-card h3{ font-size:15px; color:var(--teal); margin-bottom:14px; }
-  .fact-card ul{ list-style:none; }
-  .fact-card li{ padding:10px 0; border-bottom:1px solid var(--line); font-size:14.5px; color:rgba(242,237,226,0.85); display:flex; align-items:center; gap:10px;}
-  .fact-card li i{ color:var(--teal); }
-  .fact-card li:last-child{border-bottom:none;}
-
-  .skills-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-  .skill-row{ background:var(--ink-soft); padding:22px 26px; border:1px solid var(--line); border-radius:8px; transition: transform 0.2s, border-color 0.2s; }
-  .skill-row:hover{ transform: translateY(-2px); border-color:var(--gold); }
-  .skill-row h3{ font-size:16px; color:var(--gold); margin-bottom:8px; font-family:'Work Sans',sans-serif; font-weight:600; display:flex; align-items:center; gap:10px; }
-  .skill-row p{ font-size:14.5px; color:rgba(242,237,226,0.78); }
-
-  .passion-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
-  .passion-card{ background:var(--ink-soft); border:1px solid var(--line); border-radius:8px; padding:26px 22px; transition:border-color .2s, transform .2s; }
-  .passion-card:hover{ border-color:var(--coral); transform:translateY(-3px); }
-  .passion-card h3{ font-size:19px; margin-bottom:10px; display:flex; align-items:center; gap:10px; }
-  .passion-card p{ font-size:14px; color:rgba(242,237,226,0.72); }
-  .passion-icon{ display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:50%; background:var(--coral); color:var(--ink); margin-bottom:14px; font-size:16px; }
-  .passion-card:nth-child(2) .passion-icon{ background:var(--teal); }
-  .passion-card:nth-child(3) .passion-icon{ background:var(--gold); }
-  .passion-card:nth-child(4) .passion-icon{ background:var(--teal); }
-  .passion-card:nth-child(5) .passion-icon{ background:var(--coral); }
-
-  .exp-list{ display:flex; flex-direction:column; gap:12px; }
-  .exp-row{ background:var(--ink-soft); border:1px solid var(--line); border-radius:8px; padding:22px 26px; display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; }
-  .exp-row h3{ font-size:16px; font-family:'Work Sans',sans-serif; font-weight:600; }
-  .exp-row span{ font-size:13.5px; color:rgba(242,237,226,0.55); }
-
-  .goals{ display:grid; gap:12px; }
-  .goal-row{ background:var(--ink-soft); border:1px solid var(--line); border-radius:8px; padding:24px 28px; display:grid; grid-template-columns:140px 1fr; gap:20px; align-items:start; }
-  .goal-row span{ font-family:'Archivo Black', sans-serif; color:var(--coral); font-size:14px; }
-  .goal-row p{ color:rgba(242,237,226,0.82); font-size:15.5px; }
-
-  /* Section Contact Améliorée */
-  footer.contact{ padding:90px 0 70px; border-top:1px solid var(--line); }
-  footer.contact h2{ font-size:clamp(28px,4.5vw,46px); max-width:14ch; margin-bottom:26px; }
-  .contact-links{ display:flex; flex-wrap:wrap; gap:16px; margin-top:10px; }
-  .contact-btn{ text-decoration:none; background:var(--ink-soft); border:1px solid var(--line); padding:14px 24px; border-radius:8px; font-size:15px; display:inline-flex; align-items:center; gap:12px; transition:all .2s; color:var(--paper); cursor:pointer; }
-  .contact-btn:hover{ background:var(--coral); border-color:var(--coral); color:var(--ink); transform:translateY(-2px); }
-  .foot-note{ margin-top:60px; font-size:13px; color:rgba(242,237,226,0.4); }
-
-  @media (max-width:760px){
-    .about-grid{ grid-template-columns:1fr; }
-    .skills-grid{ grid-template-columns:1fr; }
-    .goal-row{ grid-template-columns:1fr; gap:6px; }
-    nav ul{ gap:14px; }
-    nav ul li:nth-child(4), nav ul li:nth-child(5){ display:none; }
+  :root {
+    --bg-paper: #f9f8f3;
+    --card-bg: #edf2ee;
+    --card-border: #d4e0d7;
+    --text-main: #1c2e24;
+    --text-muted: #4e6355;
+    
+    --green-primary: #2d5a27;
+    --green-soft: #5b8266;
+    --green-accent: #7a9a83;
+    --green-light: #e2ebe4;
+    
+    --warm-accent: #d97736;
+    --warm-hover: #b85e22;
+    --amber-soft: #f4e8d3;
+    
+    --shadow-soft: 0 8px 24px rgba(45, 90, 39, 0.06);
+    --shadow-hover: 0 12px 32px rgba(45, 90, 39, 0.12);
   }
 
-  @media (prefers-reduced-motion: reduce){ *{ transition:none !important; } }
-  a:focus-visible, .passion-card:focus-visible{ outline:2px solid var(--coral); outline-offset:3px; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--bg-paper);
+    color: var(--text-main);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-main);
+    line-height: 1.15;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 28px; }
+
+  /* Navigation */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(249, 248, 243, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--card-border);
+  }
+  nav .wrap {
+    display: flex; justify-content: space-between; align-items: center; padding: 16px 28px;
+  }
+  .nav-name {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--green-primary);
+    display: flex; align-items: center; gap: 8px;
+  }
+  nav ul { list-style: none; display: flex; gap: 20px; }
+  nav a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--warm-accent); }
+
+  /* Hero Header */
+  header.hero {
+    padding: 90px 0 70px;
+    position: relative;
+    background: linear-gradient(135deg, rgba(237, 242, 238, 0.6) 0%, rgba(244, 232, 211, 0.4) 100%);
+    border-bottom: 1px solid var(--card-border);
+    border-radius: 0 0 32px 32px;
+  }
+  .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--amber-soft);
+    color: var(--warm-accent);
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 13.5px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  h1.title {
+    font-size: clamp(38px, 6vw, 64px);
+    color: var(--green-primary);
+    max-width: 14ch;
+  }
+  .hero-sub {
+    margin-top: 20px;
+    max-width: 58ch;
+    font-size: 18px;
+    color: var(--text-muted);
+  }
+  .hero-tags {
+    margin-top: 28px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    background: #ffffff;
+    border: 1px solid var(--card-border);
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--green-primary);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+
+  /* Section Styles */
+  section { padding: 70px 0; }
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+  .section-num {
+    background: var(--green-light);
+    color: var(--green-primary);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 8px;
+  }
+  h2.section-title { font-size: clamp(24px, 3.5vw, 34px); color: var(--green-primary); }
+
+  /* About */
+  .about-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; }
+  .about-grid p { margin-bottom: 16px; color: var(--text-muted); font-size: 16px; }
+  
+  .fact-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--shadow-soft);
+  }
+  .fact-card h3 { font-size: 16px; color: var(--green-primary); margin-bottom: 14px; }
+  .fact-card ul { list-style: none; }
+  .fact-card li {
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--card-border);
+    font-size: 14.5px;
+    color: var(--text-muted);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .fact-card li i { color: var(--warm-accent); }
+  .fact-card li:last-child { border-bottom: none; }
+
+  /* Skills Grid */
+  .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .skill-row {
+    background: #ffffff;
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.25s ease;
+  }
+  .skill-row:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--green-soft);
+  }
+  .skill-row h3 {
+    font-size: 16px;
+    color: var(--green-primary);
+    margin-bottom: 8px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .skill-row h3 i { color: var(--warm-accent); }
+  .skill-row p { font-size: 14px; color: var(--text-muted); }
+
+  /* Passions Grid */
+  .passion-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .passion-card {
+    background: #ffffff;
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 24px;
+    transition: all 0.25s ease;
+    box-shadow: var(--shadow-soft);
+  }
+  .passion-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--warm-accent);
+  }
+  .passion-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: var(--green-light);
+    color: var(--green-primary);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    margin-bottom: 14px;
+  }
+  .passion-card:nth-child(2) .passion-icon { background: var(--amber-soft); color: var(--warm-accent); }
+  .passion-card:nth-child(3) .passion-icon { background: #e8f3f1; color: #2e7d6e; }
+  .passion-card:nth-child(4) .passion-icon { background: var(--green-light); color: var(--green-primary); }
+  .passion-card:nth-child(5) .passion-icon { background: var(--amber-soft); color: var(--warm-accent); }
+  .passion-card h3 { font-size: 18px; margin-bottom: 8px; }
+  .passion-card p { font-size: 14px; color: var(--text-muted); }
+
+  /* Expérience & Objectifs */
+  .exp-list, .goals { display: flex; flex-direction: column; gap: 12px; }
+  .exp-row, .goal-row {
+    background: #ffffff;
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 20px 24px;
+    box-shadow: var(--shadow-soft);
+  }
+  .exp-row { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .exp-row h3 { font-size: 16px; }
+  .exp-row span { font-size: 13.5px; color: var(--green-soft); font-weight: 500; }
+
+  .goal-row { display: grid; grid-template-columns: 130px 1fr; gap: 16px; align-items: center; }
+  .goal-row span {
+    font-family: 'Outfit', sans-serif;
+    color: var(--warm-accent);
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .goal-row p { color: var(--text-muted); font-size: 15px; }
+
+  /* Contact Footer */
+  footer.contact {
+    background: linear-gradient(180deg, var(--bg-paper) 0%, var(--card-bg) 100%);
+    padding: 80px 0 60px;
+    border-top: 1px solid var(--card-border);
+    border-radius: 32px 32px 0 0;
+  }
+  footer.contact h2 { font-size: clamp(28px, 4vw, 42px); color: var(--green-primary); margin-bottom: 12px; }
+  footer.contact p.contact-sub { color: var(--text-muted); margin-bottom: 28px; }
+
+  .contact-links { display: flex; flex-wrap: wrap; gap: 14px; }
+  .contact-btn {
+    background: #ffffff;
+    border: 1px solid var(--card-border);
+    padding: 12px 22px;
+    border-radius: 12px;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--text-main);
+    display: inline-flex; align-items: center; gap: 10px;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-soft);
+  }
+  .contact-btn:hover {
+    background: var(--warm-accent);
+    color: #ffffff;
+    border-color: var(--warm-accent);
+    transform: translateY(-2px);
+  }
+
+  .foot-note { margin-top: 50px; font-size: 13px; color: var(--text-muted); text-align: center; }
+
+  @media (max-width: 768px) {
+    .about-grid, .skills-grid { grid-template-columns: 1fr; }
+    .goal-row { grid-template-columns: 1fr; gap: 4px; }
+    nav ul { gap: 12px; }
+    nav ul li:nth-child(4), nav ul li:nth-child(5) { display: none; }
+  }
 </style>
 </head>
 <body>
 
 <nav>
   <div class="wrap">
-    <div class="nav-name">Lohan F. Samain</div>
+    <div class="nav-name"><i class="fa-solid fa-seedling"></i> Lohan F. Samain</div>
     <ul>
       <li><a href="#apropos">À propos</a></li>
       <li><a href="#competences">Compétences</a></li>
@@ -149,11 +303,11 @@
 
 <header class="hero">
   <div class="wrap">
-    <div class="kicker">Portfolio — BTS SIO option SISR</div>
+    <div class="kicker"><i class="fa-solid fa-graduation-cap"></i> Portfolio — BTS SIO option SISR</div>
     <h1 class="title">Lohan Froissard Samain</h1>
-    <p class="hero-sub">Étudiant en BTS SIO, spécialisation infrastructures &amp; réseaux (SISR), avec un vrai attrait pour la cybersécurité. Curieux de systèmes, de jeux vidéo et de mangas — et de comprendre comment les choses fonctionnent, jusque dans le détail.</p>
+    <p class="hero-sub">Étudiant passionné d'infrastructures, de réseaux et de cybersécurité. Curieux d'informatique, de jeux vidéo et de mangas, avec la volonté permanente de comprendre le fonctionnement des systèmes en profondeur.</p>
     <div class="hero-tags">
-      <span class="tag"><i class="fa-solid fa-network-wired"></i> Infrastructure & réseaux</span>
+      <span class="tag"><i class="fa-solid fa-network-wired"></i> Infrastructure & Réseaux</span>
       <span class="tag"><i class="fa-solid fa-shield-halved"></i> Cybersécurité</span>
       <span class="tag"><i class="fa-solid fa-briefcase"></i> Alternance chez Vinci Secure Systems</span>
       <span class="tag"><i class="fa-solid fa-location-dot"></i> Île-de-France</span>
@@ -169,17 +323,17 @@
     </div>
     <div class="about-grid">
       <div>
-        <p>Je m'appelle Lohan, 18 ans, actuellement en 1ère année de BTS Services Informatiques aux Organisations, option SISR (Solutions d'Infrastructure, Systèmes et Réseaux). Après un bac général avec les spécialités SES et SVT, j'ai voulu me diriger vers quelque chose de plus concret : comprendre comment les systèmes qui font tourner une entreprise sont montés, configurés et sécurisés.</p>
-        <p>Ce qui m'attire particulièrement, c'est la cybersécurité : comprendre comment un système peut être détourné pour mieux savoir le défendre. Un intérêt né en bidouillant mes propres jeux et systèmes, devenu aujourd'hui un vrai projet professionnel.</p>
+        <p>Je m'appelle Lohan, 18 ans, actuellement en 1ère année de BTS Services Informatiques aux Organisations, option SISR (Solutions d'Infrastructure, Systèmes et Réseaux).</p>
+        <p>Ce qui me passionne avant tout, c'est la cybersécurité : comprendre les vulnérabilités pour concevoir des architectures plus robustes. C'est un intérêt né en explorant la logique des jeux et des systèmes, devenu aujourd'hui un vrai projet professionnel.</p>
       </div>
       <div class="fact-card">
-        <h3>Parcours</h3>
+        <h3>Mon Profil</h3>
         <ul>
-          <li><i class="fa-solid fa-graduation-cap"></i> BTS SIO — option SISR (1ère année)</li>
-          <li><i class="fa-solid fa-award"></i> Bac général — spé. SES / SVT</li>
-          <li><i class="fa-solid fa-id-card"></i> Permis de conduire</li>
-          <li><i class="fa-solid fa-house-user"></i> Basé en Île-de-France</li>
-          <li><i class="fa-solid fa-user-check"></i> Alternant chez Vinci Secure Systems</li>
+          <li><i class="fa-solid fa-graduation-cap"></i> BTS SIO SISR (1ère année, 2025-2026)</li>
+          <li><i class="fa-solid fa-award"></i> Bac général — Spé. SES / SVT</li>
+          <li><i class="fa-solid fa-car"></i> Permis de conduire</li>
+          <li><i class="fa-solid fa-location-dot"></i> Basé en Île-de-France</li>
+          <li><i class="fa-solid fa-building-user"></i> Alternant chez Vinci Secure Systems</li>
         </ul>
       </div>
     </div>
@@ -195,19 +349,19 @@
     <div class="skills-grid">
       <div class="skill-row">
         <h3><i class="fa-brands fa-linux"></i> Systèmes</h3>
-        <p>Administration Windows et Linux (Ubuntu, Mint)</p>
+        <p>Administration d'environnements Windows et Linux (Ubuntu, Mint).</p>
       </div>
       <div class="skill-row">
-        <h3><i class="fa-solid fa-server"></i> Réseaux & infrastructure</h3>
-        <p>Bases en infrastructure, systèmes et réseaux acquises en BTS SISR</p>
+        <h3><i class="fa-solid fa-server"></i> Réseaux & Infrastructure</h3>
+        <p>Bases solides en architecture réseau, routage et gestion de serveurs.</p>
       </div>
       <div class="skill-row">
-        <h3><i class="fa-solid fa-code"></i> Analyse bas niveau</h3>
-        <p>Reverse engineering appliqué : analyse et modification de fichiers en hexadécimal</p>
+        <h3><i class="fa-solid fa-bug"></i> Analyse bas niveau</h3>
+        <p>Reverse engineering appliqué, analyse et modification de fichiers en hexadécimal.</p>
       </div>
       <div class="skill-row">
         <h3><i class="fa-solid fa-gamepad"></i> Émulation</h3>
-        <p>Émulation de consoles et de systèmes de jeu</p>
+        <p>Configuration et optimisation de systèmes d'émulation de consoles.</p>
       </div>
     </div>
   </div>
@@ -217,33 +371,33 @@
   <div class="wrap">
     <div class="section-head">
       <span class="section-num">03</span>
-      <h2 class="section-title">Passions</h2>
+      <h2 class="section-title">Passions & Centres d'intérêt</h2>
     </div>
     <div class="passion-grid">
       <div class="passion-card">
-        <span class="passion-icon"><i class="fa-solid fa-volleyball"></i></span>
+        <div class="passion-icon"><i class="fa-solid fa-volleyball"></i></div>
         <h3>Sport</h3>
-        <p>AS du lycée pendant 3 ans, volleyball en club aujourd'hui, et un passage par la natation, le handball, le tir à l'arc, le sabre laser et le multisport.</p>
+        <p>AS du lycée pendant 3 ans, pratique du volleyball en club, natation, tir à l'arc et sabre laser.</p>
       </div>
       <div class="passion-card">
-        <span class="passion-icon"><i class="fa-solid fa-headset"></i></span>
+        <div class="passion-icon"><i class="fa-solid fa-headset"></i></div>
         <h3>Jeux vidéo</h3>
-        <p>Stratégie, logique, systèmes complexes — les jeux vidéo m'ont donné le goût de comprendre comment les choses fonctionnent sous le capot.</p>
+        <p>Stratégie et logique : une passerelle vers la compréhension des systèmes complexes.</p>
       </div>
       <div class="passion-card">
-        <span class="passion-icon"><i class="fa-solid fa-book-open"></i></span>
+        <div class="passion-icon"><i class="fa-solid fa-book-open"></i></div>
         <h3>Mangas</h3>
-        <p>Des histoires construites avec précision, où le rythme et la structure comptent autant que l'intrigue.</p>
+        <p>Appréciation des récits bien structurés, du rythme et de la narration.</p>
       </div>
       <div class="passion-card">
-        <span class="passion-icon"><i class="fa-solid fa-plane"></i></span>
-        <h3>Voyage</h3>
-        <p>Découvrir d'autres endroits, d'autres façons de vivre — une bonne manière de sortir de sa zone de confort.</p>
+        <div class="passion-icon"><i class="fa-solid fa-compass"></i></div>
+        <h3>Voyages</h3>
+        <p>Découverte de nouvelles cultures et ouverture d'esprit au quotidien.</p>
       </div>
       <div class="passion-card">
-        <span class="passion-icon"><i class="fa-solid fa-paw"></i></span>
+        <div class="passion-icon"><i class="fa-solid fa-paw"></i></div>
         <h3>Animaux</h3>
-        <p>J'ai des animaux de compagnie à la maison, une présence qui fait partie du quotidien.</p>
+        <p>Présence réconfortante des animaux de compagnie au quotidien.</p>
       </div>
     </div>
   </div>
@@ -253,16 +407,16 @@
   <div class="wrap">
     <div class="section-head">
       <span class="section-num">04</span>
-      <h2 class="section-title">Expérience</h2>
+      <h2 class="section-title">Expérience professionnelle</h2>
     </div>
     <div class="exp-list">
       <div class="exp-row">
         <h3>Job étudiant — Mairie</h3>
-        <span>Petit job étudiant</span>
+        <span>Expérience municipale</span>
       </div>
       <div class="exp-row">
         <h3>Missions en intérim</h3>
-        <span>Expérience professionnelle</span>
+        <span>Polyvalence & Adaptabilité</span>
       </div>
     </div>
   </div>
@@ -272,20 +426,20 @@
   <div class="wrap">
     <div class="section-head">
       <span class="section-num">05</span>
-      <h2 class="section-title">Objectifs</h2>
+      <h2 class="section-title">Objectifs futurs</h2>
     </div>
     <div class="goals">
       <div class="goal-row">
         <span>Court terme</span>
-        <p>Poursuivre avec une Licence informatique puis Master en cybersécurité après mon BTS SIO SISR.</p>
+        <p>Valider mon BTS SIO SISR puis intégrer une Licence informatique axée sur la sécurité.</p>
       </div>
       <div class="goal-row">
         <span>Moyen terme</span>
-        <p>Approfondir la sécurité des systèmes et des réseaux en environnement professionnel réel.</p>
+        <p>Poursuivre en Master Cybersécurité et approfondir mes compétences sur le terrain.</p>
       </div>
       <div class="goal-row">
         <span>Long terme</span>
-        <p>Évoluer vers un métier de la cybersécurité, en affinant ma spécialisation selon les missions rencontrées en enterprise.</p>
+        <p>Devenir expert en sécurité des systèmes et des réseaux au sein d'une entreprise spécialisée.</p>
       </div>
     </div>
   </div>
@@ -293,7 +447,8 @@
 
 <footer class="contact" id="contact">
   <div class="wrap">
-    <h2> Mes Contacts </h2>
+    <h2>Restons en contact !</h2>
+    <p class="contact-sub">N'hésitez pas à me contacter par email ou sur mes réseaux professionnels.</p>
     <div class="contact-links">
       <a href="mailto:lohanf77@gmail.com" class="contact-btn">
         <i class="fa-solid fa-envelope"></i> Me contacter par Email
@@ -305,7 +460,7 @@
         <i class="fa-brands fa-github"></i> GitHub
       </a>
     </div>
-    <p class="foot-note">Lohan Froissard Samain — Portfolio BTS SIO SISR</p>
+    <p class="foot-note">© Lohan Froissard Samain — Portfolio BTS SIO SISR</p>
   </div>
 </footer>
 
