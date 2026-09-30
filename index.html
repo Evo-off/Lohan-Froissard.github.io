@@ -7,6 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Ajout de Font Awesome pour les icônes -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <style>
   :root{
     --ink:#171a24;
@@ -45,7 +48,7 @@
   .nav-name{font-family:'Archivo Black', sans-serif; font-size:16px;}
   nav ul{list-style:none; display:flex; gap:24px;}
   nav a{text-decoration:none; font-size:13.5px; color:var(--paper); opacity:0.75; transition:opacity .2s;}
-  nav a:hover{opacity:1;}
+  nav a:hover{opacity:1; color:var(--coral);}
 
   header.hero{
     position:relative;
@@ -65,7 +68,7 @@
   h1.title{ font-size:clamp(40px, 7.5vw, 80px); max-width:12ch; }
   .hero-sub{ margin-top:28px; max-width:56ch; font-size:18.5px; color:rgba(242,237,226,0.78); }
   .hero-tags{ margin-top:34px; display:flex; gap:12px; flex-wrap:wrap; }
-  .tag{ border:1px solid var(--line); padding:8px 16px; border-radius:100px; font-size:13px; color:rgba(242,237,226,0.85); }
+  .tag{ border:1px solid var(--line); padding:8px 16px; border-radius:100px; font-size:13px; color:rgba(242,237,226,0.85); background: rgba(255,255,255,0.03); }
 
   section{ padding:76px 0; border-top:1px solid var(--line); }
   .section-head{ display:flex; align-items:baseline; gap:16px; margin-bottom:38px; }
@@ -74,48 +77,50 @@
 
   .about-grid{ display:grid; grid-template-columns:1.3fr 1fr; gap:56px; }
   .about-grid p{ margin-bottom:18px; color:rgba(242,237,226,0.85); font-size:16.5px; }
-  .fact-card{ background:var(--ink-soft); border:1px solid var(--line); border-radius:6px; padding:26px; }
+  .fact-card{ background:var(--ink-soft); border:1px solid var(--line); border-radius:8px; padding:26px; }
   .fact-card h3{ font-size:15px; color:var(--teal); margin-bottom:14px; }
   .fact-card ul{ list-style:none; }
-  .fact-card li{ padding:10px 0; border-bottom:1px solid var(--line); font-size:14.5px; color:rgba(242,237,226,0.85); }
+  .fact-card li{ padding:10px 0; border-bottom:1px solid var(--line); font-size:14.5px; color:rgba(242,237,226,0.85); display:flex; align-items:center; gap:10px;}
+  .fact-card li i{ color:var(--teal); }
   .fact-card li:last-child{border-bottom:none;}
 
-  .skills-grid{ display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--line); border:1px solid var(--line); border-radius:6px; overflow:hidden; }
-  .skill-row{ background:var(--ink); padding:22px 26px; }
-  .skill-row h3{ font-size:15px; color:var(--gold); margin-bottom:8px; font-family:'Work Sans',sans-serif; font-weight:600; }
+  .skills-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .skill-row{ background:var(--ink-soft); padding:22px 26px; border:1px solid var(--line); border-radius:8px; transition: transform 0.2s, border-color 0.2s; }
+  .skill-row:hover{ transform: translateY(-2px); border-color:var(--gold); }
+  .skill-row h3{ font-size:16px; color:var(--gold); margin-bottom:8px; font-family:'Work Sans',sans-serif; font-weight:600; display:flex; align-items:center; gap:10px; }
   .skill-row p{ font-size:14.5px; color:rgba(242,237,226,0.78); }
 
-  .passion-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; }
-  .passion-card{ background:var(--ink-soft); border:1px solid var(--line); border-radius:6px; padding:26px 22px; transition:border-color .2s, transform .2s; }
+  .passion-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
+  .passion-card{ background:var(--ink-soft); border:1px solid var(--line); border-radius:8px; padding:26px 22px; transition:border-color .2s, transform .2s; }
   .passion-card:hover{ border-color:var(--coral); transform:translateY(-3px); }
-  .passion-card h3{ font-size:19px; margin-bottom:10px; }
+  .passion-card h3{ font-size:19px; margin-bottom:10px; display:flex; align-items:center; gap:10px; }
   .passion-card p{ font-size:14px; color:rgba(242,237,226,0.72); }
-  .passion-mark{ display:inline-block; width:32px; height:32px; border-radius:50%; background:var(--coral); margin-bottom:14px; }
-  .passion-card:nth-child(2) .passion-mark{ background:var(--teal); }
-  .passion-card:nth-child(3) .passion-mark{ background:var(--gold); }
-  .passion-card:nth-child(4) .passion-mark{ background:var(--teal); }
-  .passion-card:nth-child(5) .passion-mark{ background:var(--coral); }
+  .passion-icon{ display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:50%; background:var(--coral); color:var(--ink); margin-bottom:14px; font-size:16px; }
+  .passion-card:nth-child(2) .passion-icon{ background:var(--teal); }
+  .passion-card:nth-child(3) .passion-icon{ background:var(--gold); }
+  .passion-card:nth-child(4) .passion-icon{ background:var(--teal); }
+  .passion-card:nth-child(5) .passion-icon{ background:var(--coral); }
 
-  .exp-list{ display:flex; flex-direction:column; gap:2px; background:var(--line); border:1px solid var(--line); border-radius:6px; overflow:hidden; }
-  .exp-row{ background:var(--ink); padding:22px 26px; display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; }
+  .exp-list{ display:flex; flex-direction:column; gap:12px; }
+  .exp-row{ background:var(--ink-soft); border:1px solid var(--line); border-radius:8px; padding:22px 26px; display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; }
   .exp-row h3{ font-size:16px; font-family:'Work Sans',sans-serif; font-weight:600; }
   .exp-row span{ font-size:13.5px; color:rgba(242,237,226,0.55); }
 
-  .goals{ display:grid; gap:2px; background:var(--line); border:1px solid var(--line); border-radius:6px; overflow:hidden; }
-  .goal-row{ background:var(--ink); padding:24px 28px; display:grid; grid-template-columns:140px 1fr; gap:20px; align-items:start; }
+  .goals{ display:grid; gap:12px; }
+  .goal-row{ background:var(--ink-soft); border:1px solid var(--line); border-radius:8px; padding:24px 28px; display:grid; grid-template-columns:140px 1fr; gap:20px; align-items:start; }
   .goal-row span{ font-family:'Archivo Black', sans-serif; color:var(--coral); font-size:14px; }
   .goal-row p{ color:rgba(242,237,226,0.82); font-size:15.5px; }
 
+  /* Section Contact Améliorée */
   footer.contact{ padding:90px 0 70px; border-top:1px solid var(--line); }
   footer.contact h2{ font-size:clamp(28px,4.5vw,46px); max-width:14ch; margin-bottom:26px; }
   .contact-links{ display:flex; flex-wrap:wrap; gap:16px; margin-top:10px; }
-  .contact-links a{ text-decoration:none; border:1px solid var(--line); padding:14px 24px; border-radius:6px; font-size:15px; display:inline-flex; align-items:center; gap:10px; transition:background .2s, border-color .2s; }
-  .contact-links a:hover{ background:var(--ink-soft); border-color:var(--coral); }
+  .contact-btn{ text-decoration:none; background:var(--ink-soft); border:1px solid var(--line); padding:14px 24px; border-radius:8px; font-size:15px; display:inline-flex; align-items:center; gap:12px; transition:all .2s; color:var(--paper); cursor:pointer; }
+  .contact-btn:hover{ background:var(--coral); border-color:var(--coral); color:var(--ink); transform:translateY(-2px); }
   .foot-note{ margin-top:60px; font-size:13px; color:rgba(242,237,226,0.4); }
 
   @media (max-width:760px){
     .about-grid{ grid-template-columns:1fr; }
-    .passion-grid{ grid-template-columns:1fr; }
     .skills-grid{ grid-template-columns:1fr; }
     .goal-row{ grid-template-columns:1fr; gap:6px; }
     nav ul{ gap:14px; }
@@ -148,10 +153,10 @@
     <h1 class="title">Lohan Froissard Samain</h1>
     <p class="hero-sub">Étudiant en BTS SIO, spécialisation infrastructures &amp; réseaux (SISR), avec un vrai attrait pour la cybersécurité. Curieux de systèmes, de jeux vidéo et de mangas — et de comprendre comment les choses fonctionnent, jusque dans le détail.</p>
     <div class="hero-tags">
-      <span class="tag">Infrastructure & réseaux</span>
-      <span class="tag">Cybersécurité</span>
-      <span class="tag">Recherche d'alternance</span>
-      <span class="tag">Île-de-France</span>
+      <span class="tag"><i class="fa-solid fa-network-wired"></i> Infrastructure & réseaux</span>
+      <span class="tag"><i class="fa-solid fa-shield-halved"></i> Cybersécurité</span>
+      <span class="tag"><i class="fa-solid fa-briefcase"></i> Alternance chez Vinci Secure Systems</span>
+      <span class="tag"><i class="fa-solid fa-location-dot"></i> Île-de-France</span>
     </div>
   </div>
 </header>
@@ -170,11 +175,11 @@
       <div class="fact-card">
         <h3>Parcours</h3>
         <ul>
-          <li>BTS SIO — option SISR, 1ère année (2025-2026)</li>
-          <li>Bac général — spé. SES / SVT (juillet 2026)</li>
-          <li>Permis de conduire</li>
-          <li>Basé en Île-de-France</li>
-           <li>Alternant chez Vinci Secure Systems</li>
+          <li><i class="fa-solid fa-graduation-cap"></i> BTS SIO — option SISR (1ère année)</li>
+          <li><i class="fa-solid fa-award"></i> Bac général — spé. SES / SVT</li>
+          <li><i class="fa-solid fa-id-card"></i> Permis de conduire</li>
+          <li><i class="fa-solid fa-house-user"></i> Basé en Île-de-France</li>
+          <li><i class="fa-solid fa-user-check"></i> Alternant chez Vinci Secure Systems</li>
         </ul>
       </div>
     </div>
@@ -189,19 +194,19 @@
     </div>
     <div class="skills-grid">
       <div class="skill-row">
-        <h3>Systèmes</h3>
+        <h3><i class="fa-brands fa-linux"></i> Systèmes</h3>
         <p>Administration Windows et Linux (Ubuntu, Mint)</p>
       </div>
       <div class="skill-row">
-        <h3>Réseaux & infrastructure</h3>
+        <h3><i class="fa-solid fa-server"></i> Réseaux & infrastructure</h3>
         <p>Bases en infrastructure, systèmes et réseaux acquises en BTS SISR</p>
       </div>
       <div class="skill-row">
-        <h3>Analyse bas niveau</h3>
+        <h3><i class="fa-solid fa-code"></i> Analyse bas niveau</h3>
         <p>Reverse engineering appliqué : analyse et modification de fichiers en hexadécimal</p>
       </div>
       <div class="skill-row">
-        <h3>Émulation</h3>
+        <h3><i class="fa-solid fa-gamepad"></i> Émulation</h3>
         <p>Émulation de consoles et de systèmes de jeu</p>
       </div>
     </div>
@@ -216,27 +221,27 @@
     </div>
     <div class="passion-grid">
       <div class="passion-card">
-        <span class="passion-mark"></span>
+        <span class="passion-icon"><i class="fa-solid fa-volleyball"></i></span>
         <h3>Sport</h3>
         <p>AS du lycée pendant 3 ans, volleyball en club aujourd'hui, et un passage par la natation, le handball, le tir à l'arc, le sabre laser et le multisport.</p>
       </div>
       <div class="passion-card">
-        <span class="passion-mark"></span>
+        <span class="passion-icon"><i class="fa-solid fa-headset"></i></span>
         <h3>Jeux vidéo</h3>
         <p>Stratégie, logique, systèmes complexes — les jeux vidéo m'ont donné le goût de comprendre comment les choses fonctionnent sous le capot.</p>
       </div>
       <div class="passion-card">
-        <span class="passion-mark"></span>
+        <span class="passion-icon"><i class="fa-solid fa-book-open"></i></span>
         <h3>Mangas</h3>
         <p>Des histoires construites avec précision, où le rythme et la structure comptent autant que l'intrigue.</p>
       </div>
       <div class="passion-card">
-        <span class="passion-mark"></span>
+        <span class="passion-icon"><i class="fa-solid fa-plane"></i></span>
         <h3>Voyage</h3>
         <p>Découvrir d'autres endroits, d'autres façons de vivre — une bonne manière de sortir de sa zone de confort.</p>
       </div>
       <div class="passion-card">
-        <span class="passion-mark"></span>
+        <span class="passion-icon"><i class="fa-solid fa-paw"></i></span>
         <h3>Animaux</h3>
         <p>J'ai des animaux de compagnie à la maison, une présence qui fait partie du quotidien.</p>
       </div>
@@ -272,7 +277,7 @@
     <div class="goals">
       <div class="goal-row">
         <span>Court terme</span>
-        <p> Poursuivre avec une License info puis Master / cybersécurité pour la suite de mon BTS SIO SISR.</p>
+        <p>Poursuivre avec une Licence informatique puis Master en cybersécurité après mon BTS SIO SISR.</p>
       </div>
       <div class="goal-row">
         <span>Moyen terme</span>
@@ -280,7 +285,7 @@
       </div>
       <div class="goal-row">
         <span>Long terme</span>
-        <p>Évoluer vers un métier de la cybersécurité, en affinant ma spécialisation selon les missions rencontrées en entreprise.</p>
+        <p>Évoluer vers un métier de la cybersécurité, en affinant ma spécialisation selon les missions rencontrées en enterprise.</p>
       </div>
     </div>
   </div>
@@ -290,9 +295,15 @@
   <div class="wrap">
     <h2> Mes Contacts </h2>
     <div class="contact-links">
-      <a href="mailto:lohanf77@gmail.com">Email</a>
-      <a href="www.linkedin.com/in/lohan-froissard-samain-678bb63b8" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="Evo-off.github.io" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:lohanf77@gmail.com" class="contact-btn">
+        <i class="fa-solid fa-envelope"></i> Me contacter par Email
+      </a>
+      <a href="https://www.linkedin.com/in/lohan-froissard-samain-678bb63b8" target="_blank" rel="noopener" class="contact-btn">
+        <i class="fa-brands fa-linkedin"></i> LinkedIn
+      </a>
+      <a href="https://github.com/Evo-off" target="_blank" rel="noopener" class="contact-btn">
+        <i class="fa-brands fa-github"></i> GitHub
+      </a>
     </div>
     <p class="foot-note">Lohan Froissard Samain — Portfolio BTS SIO SISR</p>
   </div>
