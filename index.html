@@ -11,9 +11,9 @@
 
 <style>
   :root {
-    --bg-paper: #f9f8f3;
+    --bg-paper: #f4f3ed;
     --card-bg: #ffffff;
-    --card-border: #d4e0d7;
+    --card-border: #c8d8cc;
     --text-main: #1c2e24;
     --text-muted: #4e6355;
     
@@ -24,8 +24,9 @@
     --warm-accent: #d97736;
     --amber-soft: #f4e8d3;
     
-    --shadow-soft: 0 8px 24px rgba(45, 90, 39, 0.06);
-    --shadow-hover: 0 12px 32px rgba(45, 90, 39, 0.12);
+    --shadow-soft: 0 8px 24px rgba(45, 90, 39, 0.08);
+    --shadow-strong: 0 12px 32px rgba(28, 46, 36, 0.15);
+    --shadow-hover: 0 12px 32px rgba(45, 90, 39, 0.14);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -47,63 +48,77 @@
 
   a { color: inherit; text-decoration: none; }
 
+  /* Conteneur global agrandi */
   .layout-container {
     display: flex;
-    max-width: 1240px;
+    max-width: 1360px; /* Agrandissement du site (1240px -> 1360px) */
     margin: 0 auto;
     position: relative;
+    gap: 30px;
+    padding: 0 20px;
   }
 
+  /* Zone de contenu principal élargie */
   main.main-content {
     flex: 1;
-    max-width: 900px;
-    padding: 0 40px 0 28px;
+    max-width: 1000px; /* Élégissement de la zone principale (900px -> 1000px) */
   }
 
-  /* Sidebar Navigation */
+  /* Sidebar Navigation (Mise en valeur) */
   nav.sidebar-right {
-    width: 270px;
+    width: 290px; /* Menu plus large (270px -> 290px) */
     position: sticky;
     top: 30px;
     height: fit-content;
     max-height: calc(100vh - 60px);
     background: #ffffff;
-    border: 1px solid var(--card-border);
+    border: 2px solid var(--green-soft); /* Bordure renforcée */
     border-radius: 20px;
     padding: 24px 18px;
-    box-shadow: var(--shadow-soft);
+    box-shadow: var(--shadow-strong); /* Ombre plus prononcée pour détacher du fond */
     margin-top: 40px;
+    z-index: 100;
   }
 
   .nav-header {
     font-family: 'Outfit', sans-serif;
     font-weight: 700;
-    font-size: 17px;
+    font-size: 18px;
     color: var(--green-primary);
     display: flex;
     align-items: center;
     gap: 10px;
     padding-bottom: 16px;
-    border-bottom: 1px dashed var(--card-border);
+    border-bottom: 2px solid var(--green-light);
     margin-bottom: 16px;
   }
 
-  nav.sidebar-right ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  nav.sidebar-right ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
 
   nav.sidebar-right a {
-    font-size: 13.5px;
+    font-size: 14px;
     font-weight: 600;
-    color: var(--text-muted);
-    padding: 9px 12px;
-    border-radius: 10px;
+    color: var(--text-main);
+    padding: 11px 14px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    transition: all 0.2s ease;
+    gap: 12px;
+    background: #f8faf8;
+    border: 1px solid transparent;
+    transition: all 0.25s ease;
   }
 
-  nav.sidebar-right a i { font-size: 15px; width: 18px; text-align: center; color: var(--green-soft); }
-  nav.sidebar-right a:hover { background: var(--green-light); color: var(--green-primary); }
+  nav.sidebar-right a i { font-size: 16px; width: 20px; text-align: center; color: var(--green-primary); }
+  
+  nav.sidebar-right a:hover { 
+    background: var(--green-primary); 
+    color: #ffffff; 
+    border-color: var(--green-primary);
+    transform: translateX(4px); /* Petit décalage interactif vers la droite */
+  }
+
+  nav.sidebar-right a:hover i { color: #ffffff; }
 
   /* Hero */
   header.hero { padding: 60px 0 40px; }
@@ -112,66 +127,64 @@
     background: var(--amber-soft); color: var(--warm-accent);
     padding: 6px 14px; border-radius: 100px; font-size: 13.5px; font-weight: 600; margin-bottom: 18px;
   }
-  h1.title { font-size: clamp(32px, 4.5vw, 50px); color: var(--green-primary); }
-  .hero-sub { margin-top: 10px; font-size: 17px; color: var(--text-muted); max-width: 60ch; }
+  h1.title { font-size: clamp(34px, 4.8vw, 54px); color: var(--green-primary); }
+  .hero-sub { margin-top: 10px; font-size: 18px; color: var(--text-muted); max-width: 65ch; }
   .hero-tags { margin-top: 24px; display: flex; gap: 10px; flex-wrap: wrap; }
   .tag {
     background: #ffffff; border: 1px solid var(--card-border);
-    padding: 7px 14px; border-radius: 100px; font-size: 12.5px; font-weight: 500;
-    color: var(--green-primary); display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 16px; border-radius: 100px; font-size: 13px; font-weight: 500;
+    color: var(--green-primary); display: inline-flex; align-items: center; gap: 8px;
   }
 
   /* Sections */
-  section { padding: 45px 0; border-top: 1px solid var(--card-border); }
-  .section-head { display: flex; align-items: center; gap: 12px; margin-bottom: 26px; }
-  h2.section-title { font-size: clamp(22px, 2.8vw, 30px); color: var(--green-primary); }
+  section { padding: 50px 0; border-top: 1px solid var(--card-border); }
+  .section-head { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+  h2.section-title { font-size: clamp(24px, 3vw, 32px); color: var(--green-primary); }
 
   /* Section 1 - Timeline & Key Skills */
-  .timeline { margin: 20px 0 30px; border-left: 2px solid var(--green-soft); padding-left: 20px; display: flex; flex-direction: column; gap: 18px; }
+  .timeline { margin: 20px 0 30px; border-left: 3px solid var(--green-soft); padding-left: 20px; display: flex; flex-direction: column; gap: 20px; }
   .timeline-item { position: relative; }
   .timeline-item::before {
-    content: ''; position: absolute; left: -26px; top: 6px; width: 10px; height: 10px;
+    content: ''; position: absolute; left: -27px; top: 6px; width: 12px; height: 12px;
     border-radius: 50%; background: var(--warm-accent);
   }
-  .timeline-date { font-size: 12.5px; font-weight: 700; color: var(--warm-accent); }
-  .timeline-title { font-size: 15px; font-weight: 600; }
+  .timeline-date { font-size: 13px; font-weight: 700; color: var(--warm-accent); }
+  .timeline-title { font-size: 16px; font-weight: 600; }
 
-  .key-skills-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 20px; }
-  .key-skill-card { background: var(--amber-soft); padding: 18px; border-radius: 12px; border: 1px solid rgba(217, 119, 54, 0.2); }
-  .key-skill-card h4 { color: var(--warm-accent); font-size: 15px; margin-bottom: 6px; }
-  .key-skill-card p { font-size: 13px; color: var(--text-main); }
+  .key-skills-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 20px; }
+  .key-skill-card { background: var(--amber-soft); padding: 20px; border-radius: 14px; border: 1px solid rgba(217, 119, 54, 0.25); }
+  .key-skill-card h4 { color: var(--warm-accent); font-size: 16px; margin-bottom: 6px; }
+  .key-skill-card p { font-size: 13.5px; color: var(--text-main); }
 
   /* Cards & Grids */
-  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   
   .info-card {
     background: #ffffff; border: 1px solid var(--card-border);
-    border-radius: 14px; padding: 22px; box-shadow: var(--shadow-soft);
+    border-radius: 16px; padding: 26px; box-shadow: var(--shadow-soft);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   .info-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-hover);
   }
-  .info-card h3 { font-size: 16px; color: var(--green-primary); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .info-card h3 { font-size: 17px; color: var(--green-primary); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
 
-  .stat-box { text-align: center; background: var(--green-light); padding: 14px; border-radius: 10px; }
-  .stat-number { font-size: 22px; font-weight: 700; color: var(--green-primary); font-family: 'Outfit', sans-serif; }
-  .stat-label { font-size: 12px; color: var(--text-muted); }
+  .stat-box { text-align: center; background: var(--green-light); padding: 16px; border-radius: 12px; }
+  .stat-number { font-size: 24px; font-weight: 700; color: var(--green-primary); font-family: 'Outfit', sans-serif; }
+  .stat-label { font-size: 12.5px; color: var(--text-muted); }
 
   /* Footer Contact */
-  footer.contact { background: var(--green-light); padding: 40px 24px; border-radius: 20px; margin: 40px 0; }
+  footer.contact { background: var(--green-light); padding: 45px 30px; border-radius: 20px; margin: 40px 0; }
   .contact-btn {
-    background: #ffffff; border: 1px solid var(--card-border); padding: 10px 18px;
-    border-radius: 10px; font-size: 13.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;
+    background: #ffffff; border: 1px solid var(--card-border); padding: 12px 20px;
+    border-radius: 12px; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 10px;
     transition: all 0.2s ease;
   }
   .contact-btn:hover { background: var(--warm-accent); color: #ffffff; transform: translateY(-2px); }
 
-  /* -------------------------------------------------------------
-     Animations de défilement (Scroll Animations)
-  ------------------------------------------------------------- */
+  /* Animations au défilement */
   .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -184,11 +197,12 @@
     transform: translateY(0);
   }
 
-  @media (max-width: 920px) {
-    .layout-container { flex-direction: column-reverse; }
-    main.main-content { padding: 0 20px; }
+  @media (max-width: 980px) {
+    .layout-container { flex-direction: column-reverse; padding: 0 15px; }
+    main.main-content { max-width: 100%; }
     nav.sidebar-right { width: 100%; margin: 10px 0; position: static; }
     nav.sidebar-right ul { flex-direction: row; flex-wrap: wrap; }
+    nav.sidebar-right a { flex: 1; min-width: 140px; justify-content: center; }
     .grid-2, .grid-3, .key-skills-3 { grid-template-columns: 1fr; }
   }
 </style>
@@ -208,8 +222,8 @@
         
         <!-- Cadre Photo -->
         <div class="profile-photo-frame" style="
-          width: 150px; 
-          height: 150px; 
+          width: 160px; 
+          height: 160px; 
           border-radius: 20px; 
           border: 2px dashed var(--green-soft); 
           background: #ffffff; 
@@ -221,7 +235,7 @@
           box-shadow: var(--shadow-soft);
           flex-shrink: 0;
         ">
-          <i class="fa-solid fa-user-large" style="font-size: 45px; color: var(--green-soft); margin-bottom: 6px;"></i>
+          <i class="fa-solid fa-user-large" style="font-size: 48px; color: var(--green-soft); margin-bottom: 6px;"></i>
           <span style="font-size: 11px; color: var(--text-muted); font-weight: 600;">Ta Photo</span>
         </div>
 
@@ -237,7 +251,7 @@
       </div>
 
       <!-- Description -->
-      <p style="margin-top: 20px; color: var(--text-muted); font-size: 15px;">
+      <p style="margin-top: 22px; color: var(--text-muted); font-size: 15.5px;">
         Étudiant en BTS SIO option SISR à l'UTEC Melun et apprenti Administrateur Systèmes & Réseaux chez <strong>VINCI Smart Secure Systems</strong>. Passionné d'infrastructures système, de virtualisation et de cybersécurité.
       </p>
 
@@ -249,29 +263,29 @@
       </div>
 
       <!-- Timeline / Parcours -->
-      <h3 style="margin-top: 35px; margin-bottom: 15px; font-size: 18px; color: var(--green-primary);">
+      <h3 style="margin-top: 40px; margin-bottom: 16px; font-size: 19px; color: var(--green-primary);">
         <i class="fa-solid fa-timeline"></i> Parcours & Frise Chronologique
       </h3>
       <div class="timeline">
         <div class="timeline-item">
           <span class="timeline-date">2026 — Présent</span>
           <div class="timeline-title">Apprenti Systèmes & Réseaux — VINCI Smart Secure Systems</div>
-          <p style="font-size: 13px; color: var(--text-muted);">Gestion d'infrastructure, support N1/N2 et sécurisation des réseaux d'entreprise.</p>
+          <p style="font-size: 13.5px; color: var(--text-muted);">Gestion d'infrastructure, support N1/N2 et sécurisation des réseaux d'entreprise.</p>
         </div>
         <div class="timeline-item">
           <span class="timeline-date">2026 — Présent</span>
           <div class="timeline-title">BTS SIO SISR — UTEC Melun</div>
-          <p style="font-size: 13px; color: var(--text-muted);">Formation en alternance spécialisée en réseaux et cybersécurité (77).</p>
+          <p style="font-size: 13.5px; color: var(--text-muted);">Formation en alternance spécialisée en réseaux et cybersécurité (77).</p>
         </div>
         <div class="timeline-item">
           <span class="timeline-date">2026</span>
           <div class="timeline-title">Baccalauréat Général (SES / SVT)</div>
-          <p style="font-size: 13px; color: var(--text-muted);">Obtention du Bac. Orientation vers les systèmes et réseaux informatiques.</p>
+          <p style="font-size: 13.5px; color: var(--text-muted);">Obtention du Bac. Orientation vers les systèmes et réseaux informatiques.</p>
         </div>
       </div>
 
       <!-- 3 Compétences clés -->
-      <h3 style="margin-bottom: 12px; font-size: 18px; color: var(--green-primary);">
+      <h3 style="margin-bottom: 14px; font-size: 19px; color: var(--green-primary);">
         <i class="fa-solid fa-star"></i> 3 Compétences Clés
       </h3>
       <div class="key-skills-3">
@@ -296,9 +310,9 @@
       <div class="section-head">
         <h2 class="section-title">École : UTEC Melun</h2>
       </div>
-      <div class="info-card" style="margin-bottom: 18px;">
+      <div class="info-card" style="margin-bottom: 20px;">
         <h3><i class="fa-solid fa-school"></i> Présentation de l'établissement</h3>
-        <p style="font-size: 14.5px; color: var(--text-muted);">
+        <p style="font-size: 15px; color: var(--text-muted);">
           L'UTEC Melun (CCI Seine-et-Marne) est un centre de formation d'apprentis majeur en Île-de-France, spécialisé dans les métiers du numérique, du tertiaire et des technologies.
         </p>
       </div>
@@ -321,13 +335,13 @@
       <div class="grid-2">
         <div class="info-card">
           <h3><i class="fa-solid fa-layer-group"></i> Domaine de compétences</h3>
-          <p style="font-size: 14px; color: var(--text-muted);">
+          <p style="font-size: 14.5px; color: var(--text-muted);">
             Conception d'architectures réseau, administration système avancée, supervision de parc informatique, sécurisation des données.
           </p>
         </div>
         <div class="info-card">
           <h3><i class="fa-solid fa-book-bookmark"></i> Le BTS SIO option SISR</h3>
-          <p style="font-size: 14px; color: var(--text-muted);">
+          <p style="font-size: 14.5px; color: var(--text-muted);">
             L'option SISR forme des spécialistes capables de gérer le réseau d'une entreprise, de déployer des services et d'assurer la continuité d'activité.
           </p>
         </div>
@@ -343,7 +357,7 @@
       <div class="grid-2">
         <div class="info-card">
           <h3><i class="fa-solid fa-building"></i> Informations Générales</h3>
-          <ul style="list-style: none; font-size: 13.5px; color: var(--text-muted); display: flex; flex-direction: column; gap: 8px;">
+          <ul style="list-style: none; font-size: 14px; color: var(--text-muted); display: flex; flex-direction: column; gap: 10px;">
             <li><strong>Entreprise :</strong> VINCI Smart Secure Systems</li>
             <li><strong>Secteur :</strong> Groupe VINCI (Energies & Télécoms)</li>
             <li><strong>Domaine :</strong> Systèmes de sécurité, réseaux & sûreté électronique</li>
@@ -352,10 +366,10 @@
         </div>
         <div class="info-card">
           <h3><i class="fa-solid fa-user-gear"></i> Mon Service & Missions</h3>
-          <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 8px;">
+          <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 10px;">
             <strong>Service :</strong> Direction des Systèmes d'Information / Support IT
           </p>
-          <ul style="font-size: 13px; color: var(--text-muted); padding-left: 16px;">
+          <ul style="font-size: 13.5px; color: var(--text-muted); padding-left: 18px; display: flex; flex-direction: column; gap: 6px;">
             <li>Support niveau 1/2 aux collaborateurs et résolution d'incidents.</li>
             <li>Administration Active Directory, gestion des accès et droits.</li>
             <li>Supervision du parc informatique, des équipements réseau et sauvegardes.</li>
@@ -373,37 +387,37 @@
       <div class="grid-3">
         <div class="info-card">
           <h3><i class="fa-solid fa-network-wired"></i> Réseau</h3>
-          <p style="font-size: 13px; color: var(--text-muted);">TCP/IP, IPv4, VLANs, VPN, Routage, Commutation.</p>
+          <p style="font-size: 13.5px; color: var(--text-muted);">TCP/IP, IPv4, VLANs, VPN, Routage, Commutation.</p>
         </div>
         <div class="info-card">
           <h3><i class="fa-solid fa-server"></i> Systèmes</h3>
-          <p style="font-size: 13px; color: var(--text-muted);">Windows Server (AD DS, DNS, DHCP), Linux (Debian, Ubuntu, Mint), Scripting Python/Bash.</p>
+          <p style="font-size: 13.5px; color: var(--text-muted);">Windows Server (AD DS, DNS, DHCP), Linux (Debian, Ubuntu, Mint), Scripting Python/Bash.</p>
         </div>
         <div class="info-card">
           <h3><i class="fa-solid fa-shield-halved"></i> Cybersécurité</h3>
-          <p style="font-size: 13px; color: var(--text-muted);">Hardening d'OS, bonnes pratiques ANSSI, Reverse Eng. bas niveau.</p>
+          <p style="font-size: 13.5px; color: var(--text-muted);">Hardening d'OS, bonnes pratiques ANSSI, Reverse Eng. bas niveau.</p>
         </div>
       </div>
     </section>
 
     <!-- Footer Contact -->
     <footer class="contact reveal" id="contact">
-      <h2 style="font-size: 24px; color: var(--green-primary); margin-bottom: 10px;">Contact & Liens Réseaux</h2>
-      <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">Disponible pour échanger sur mes projets et mon parcours.</p>
-      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+      <h2 style="font-size: 26px; color: var(--green-primary); margin-bottom: 10px;">Contact & Liens Réseaux</h2>
+      <p style="font-size: 14.5px; color: var(--text-muted); margin-bottom: 22px;">Disponible pour échanger sur mon parcours.</p>
+      <div style="display: flex; gap: 14px; flex-wrap: wrap;">
         <a href="mailto:lohanf77@gmail.com" class="contact-btn"><i class="fa-solid fa-envelope"></i> Email</a>
         <a href="https://www.linkedin.com/in/lohan-froissard-samain-678bb63b8" target="_blank" class="contact-btn"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
         <a href="https://github.com/Evo-off" target="_blank" class="contact-btn"><i class="fa-brands fa-github"></i> GitHub</a>
       </div>
-      <p style="font-size: 12px; color: var(--text-muted); margin-top: 25px;">© Lohan Froissard Samain — UTEC Melun / VINCI Smart Secure Systems — BTS SIO SISR</p>
+      <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 25px;">© Lohan Froissard Samain — UTEC Melun / VINCI Smart Secure Systems — BTS SIO SISR</p>
     </footer>
 
   </main>
 
-  <!-- Navigation Latérale -->
+  <!-- Navigation Latérale Mise en Valeur -->
   <nav class="sidebar-right">
     <div class="nav-header">
-      <i class="fa-solid fa-seedling"></i> Portfolio Lohan
+      <i class="fa-solid fa-compass"></i> Navigation
     </div>
     <ul>
       <li><a href="#presentation"><i class="fa-solid fa-user"></i> Présentation</a></li>
