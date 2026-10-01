@@ -1,236 +1,262 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lohan Froissard Samain — Portfolio BTS SIO SISR</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-<style>
-  :root {
-    --bg-paper: #f4f3ed;
-    --card-bg: #ffffff;
-    --card-border: #c8d8cc;
-    --text-main: #1c2e24;
-    --text-muted: #4e6355;
-    
-    --green-primary: #2d5a27;
-    --green-soft: #5b8266;
-    --green-light: #e2ebe4;
-    
-    --warm-accent: #d97736;
-    --amber-soft: #f4e8d3;
-    
-    --shadow-soft: 0 8px 24px rgba(45, 90, 39, 0.08);
-    --shadow-strong: 0 12px 32px rgba(28, 46, 36, 0.15);
-    --shadow-hover: 0 12px 32px rgba(45, 90, 39, 0.14);
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-
-  body {
-    background-color: var(--bg-paper);
-    color: var(--text-main);
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    line-height: 1.65;
-    overflow-x: hidden;
-  }
-
-  h1, h2, h3, h4 {
-    font-family: 'Outfit', sans-serif;
-    color: var(--text-main);
-    line-height: 1.2;
-  }
-
-  a { color: inherit; text-decoration: none; }
-
-  /* Conteneur global */
-  .layout-container {
-    display: flex;
-    max-width: 1360px;
-    margin: 0 auto;
-    position: relative;
-    gap: 30px;
-    padding: 0 20px;
-  }
-
-  /* Main Content */
-  main.main-content {
-    flex: 1;
-    max-width: 1000px;
-  }
-
-  /* Navigation Latérale */
-  nav.sidebar-right {
-    width: 290px;
-    position: sticky;
-    top: 30px;
-    height: fit-content;
-    max-height: calc(100vh - 60px);
-    background: #ffffff;
-    border: 2px solid var(--green-soft);
-    border-radius: 20px;
-    padding: 24px 18px;
-    box-shadow: var(--shadow-strong);
-    margin-top: 40px;
-    z-index: 100;
-  }
-
-  .nav-header {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 700;
-    font-size: 18px;
-    color: var(--green-primary);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding-bottom: 16px;
-    border-bottom: 2px solid var(--green-light);
-    margin-bottom: 16px;
-  }
-
-  nav.sidebar-right ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-
-  nav.sidebar-right a {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-main);
-    padding: 11px 14px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: #f8faf8;
-    border: 1px solid transparent;
-    transition: all 0.25s ease;
-  }
-
-  nav.sidebar-right a i { font-size: 16px; width: 20px; text-align: center; color: var(--green-primary); }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lohan Froissard Samain — Portfolio BTS SIO SISR</title>
   
-  nav.sidebar-right a:hover, nav.sidebar-right a:focus { 
-    background: var(--green-primary); 
-    color: #ffffff; 
-    border-color: var(--green-primary);
-    transform: translateX(4px);
-    outline: none;
-  }
-
-  nav.sidebar-right a:hover i, nav.sidebar-right a:focus i { color: #ffffff; }
-
-  /* Hero */
-  header.hero { padding: 60px 0 40px; }
-  .kicker {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--amber-soft); color: var(--warm-accent);
-    padding: 6px 14px; border-radius: 100px; font-size: 13.5px; font-weight: 600; margin-bottom: 18px;
-  }
-  h1.title { font-size: clamp(34px, 4.8vw, 54px); color: var(--green-primary); }
-  .hero-sub { margin-top: 10px; font-size: 18px; color: var(--text-muted); max-width: 65ch; }
-  .hero-tags { margin-top: 24px; display: flex; gap: 10px; flex-wrap: wrap; }
-  .tag {
-    background: #ffffff; border: 1px solid var(--card-border);
-    padding: 8px 16px; border-radius: 100px; font-size: 13px; font-weight: 500;
-    color: var(--green-primary); display: inline-flex; align-items: center; gap: 8px;
-  }
-
-  /* Sections */
-  section { padding: 50px 0; border-top: 1px solid var(--card-border); }
-  .section-head { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
-  h2.section-title { font-size: clamp(24px, 3vw, 32px); color: var(--green-primary); }
-
-  /* Timeline & Cards */
-  .timeline { margin: 20px 0 30px; border-left: 3px solid var(--green-soft); padding-left: 20px; display: flex; flex-direction: column; gap: 20px; }
-  .timeline-item { position: relative; }
-  .timeline-item::before {
-    content: ''; position: absolute; left: -27px; top: 6px; width: 12px; height: 12px;
-    border-radius: 50%; background: var(--warm-accent);
-  }
-  .timeline-date { font-size: 13px; font-weight: 700; color: var(--warm-accent); }
-  .timeline-title { font-size: 16px; font-weight: 600; }
-
-  .key-skills-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 20px; }
-  .key-skill-card { background: var(--amber-soft); padding: 20px; border-radius: 14px; border: 1px solid rgba(217, 119, 54, 0.25); }
-  .key-skill-card h4 { color: var(--warm-accent); font-size: 16px; margin-bottom: 6px; }
-  .key-skill-card p { font-size: 13.5px; color: var(--text-main); }
-
-  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  <!-- Fonts Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-  .info-card {
-    background: #ffffff; border: 1px solid var(--card-border);
-    border-radius: 16px; padding: 26px; box-shadow: var(--shadow-soft);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .info-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
-  .info-card h3 { font-size: 17px; color: var(--green-primary); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  .stat-box { text-align: center; background: var(--green-light); padding: 16px; border-radius: 12px; }
-  .stat-number { font-size: 24px; font-weight: 700; color: var(--green-primary); font-family: 'Outfit', sans-serif; }
-  .stat-label { font-size: 12.5px; color: var(--text-muted); }
+  <style>
+    :root {
+      --bg-paper: #f6f8f6;
+      --card-bg: #ffffff;
+      --card-border: #d2e0d5;
+      --text-main: #14231b;
+      --text-muted: #43584c;
+      
+      --green-primary: #1f4223;
+      --green-soft: #4a7354;
+      --green-light: #e4eee6;
+      
+      --warm-accent: #d96b27;
+      --amber-soft: #fbf1e5;
+      
+      --shadow-soft: 0 10px 30px rgba(31, 66, 35, 0.06);
+      --shadow-hover: 0 18px 40px rgba(31, 66, 35, 0.12);
+      --shadow-strong: 0 16px 36px rgba(20, 35, 27, 0.12);
+    }
 
-  /* Footer & Legal */
-  footer.contact { background: var(--green-light); padding: 45px 30px; border-radius: 20px; margin: 40px 0; }
-  .contact-btn {
-    background: #ffffff; border: 1px solid var(--card-border); padding: 12px 20px;
-    border-radius: 12px; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 10px;
-    transition: all 0.2s ease;
-  }
-  .contact-btn:hover { background: var(--warm-accent); color: #ffffff; transform: translateY(-2px); }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
-  .footer-legal {
-    margin-top: 25px;
-    padding-top: 15px;
-    border-top: 1px dashed var(--card-border);
-    font-size: 12px;
-    color: var(--text-muted);
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
+    body {
+      background-color: var(--bg-paper);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
 
-  /* Modal Mentions Légales */
-  .modal {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.6);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-  }
-  .modal-content {
-    background: #fff;
-    padding: 30px;
-    border-radius: 16px;
-    max-width: 600px;
-    width: 90%;
-    max-height: 80vh;
-    overflow-y: auto;
-  }
+    h1, h2, h3, h4 {
+      font-family: 'Outfit', sans-serif;
+      color: var(--text-main);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
 
-  /* Animations au défilement */
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: opacity, transform;
-  }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
+    a { color: inherit; text-decoration: none; }
 
-  @media (max-width: 980px) {
-    .layout-container { flex-direction: column-reverse; padding: 0 15px; }
-    main.main-content { max-width: 100%; }
-    nav.sidebar-right { width: 100%; margin: 10px 0; position: static; }
-    nav.sidebar-right ul { flex-direction: row; flex-wrap: wrap; }
-    nav.sidebar-right a { flex: 1; min-width: 140px; justify-content: center; }
-    .grid-2, .grid-3, .key-skills-3 { grid-template-columns: 1fr; }
-  }
-</style>
+    /* Layout principal élargi */
+    .layout-container {
+      display: flex;
+      max-width: 1440px;
+      margin: 0 auto;
+      position: relative;
+      gap: 40px;
+      padding: 30px 24px;
+    }
+
+    main.main-content {
+      flex: 1;
+      max-width: 1060px;
+    }
+
+    /* Navigation Latérale sticky & moderne */
+    nav.sidebar-right {
+      width: 310px;
+      position: sticky;
+      top: 30px;
+      height: fit-content;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      border: 2px solid var(--green-soft);
+      border-radius: 24px;
+      padding: 28px 20px;
+      box-shadow: var(--shadow-strong);
+      z-index: 100;
+    }
+
+    .nav-header {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--green-primary);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 18px;
+      border-bottom: 2px solid var(--green-light);
+      margin-bottom: 20px;
+    }
+
+    nav.sidebar-right ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+    nav.sidebar-right a {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-main);
+      padding: 13px 16px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      transition: all 0.25s ease;
+    }
+
+    nav.sidebar-right a i { font-size: 18px; width: 22px; text-align: center; color: var(--green-primary); transition: color 0.25s; }
+
+    nav.sidebar-right a:hover, nav.sidebar-right a.active { 
+      background: var(--green-primary); 
+      color: #ffffff; 
+      border-color: var(--green-primary);
+      transform: translateX(6px);
+      box-shadow: 0 6px 16px rgba(31, 66, 35, 0.2);
+    }
+
+    nav.sidebar-right a:hover i, nav.sidebar-right a.active i { color: #ffffff; }
+
+    /* Hero & En-tête */
+    header.hero { padding: 40px 0 50px; }
+    
+    .kicker {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--amber-soft); color: var(--warm-accent);
+      padding: 8px 18px; border-radius: 100px; font-size: 14px; font-weight: 700; margin-bottom: 20px;
+      border: 1px solid rgba(217, 107, 39, 0.2);
+    }
+
+    h1.title { font-size: clamp(38px, 5.2vw, 62px); font-weight: 800; color: var(--green-primary); }
+    
+    .hero-sub { margin-top: 14px; font-size: 20px; color: var(--text-muted); max-width: 68ch; font-weight: 500; }
+    
+    .hero-tags { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
+    
+    .tag {
+      background: #ffffff; border: 1px solid var(--card-border);
+      padding: 10px 20px; border-radius: 100px; font-size: 14px; font-weight: 600;
+      color: var(--green-primary); display: inline-flex; align-items: center; gap: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    /* Sections */
+    section { padding: 60px 0; border-top: 2px solid var(--green-light); }
+    .section-head { display: flex; align-items: center; gap: 14px; margin-bottom: 32px; }
+    h2.section-title { font-size: clamp(28px, 3.5vw, 38px); font-weight: 700; color: var(--green-primary); }
+
+    /* Timeline & Compétences Clés */
+    .timeline { margin: 24px 0 36px; border-left: 4px solid var(--green-soft); padding-left: 24px; display: flex; flex-direction: column; gap: 24px; }
+    .timeline-item { position: relative; }
+    .timeline-item::before {
+      content: ''; position: absolute; left: -32px; top: 8px; width: 14px; height: 14px;
+      border-radius: 50%; background: var(--warm-accent); border: 3px solid var(--bg-paper);
+    }
+    .timeline-date { font-size: 14px; font-weight: 800; color: var(--warm-accent); text-transform: uppercase; letter-spacing: 0.5px; }
+    .timeline-title { font-size: 18px; font-weight: 700; color: var(--text-main); margin-top: 2px; }
+
+    .key-skills-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; }
+    .key-skill-card { 
+      background: var(--amber-soft); padding: 24px; border-radius: 18px; 
+      border: 1.5px solid rgba(217, 107, 39, 0.25); transition: transform 0.3s ease;
+    }
+    .key-skill-card:hover { transform: translateY(-4px); }
+    .key-skill-card h4 { color: var(--warm-accent); font-size: 18px; margin-bottom: 8px; font-weight: 700; }
+    .key-skill-card p { font-size: 14.5px; color: var(--text-main); font-weight: 500; }
+
+    /* Grilles et Cartes */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    
+    .info-card {
+      background: #ffffff; border: 1.5px solid var(--card-border);
+      border-radius: 20px; padding: 32px; box-shadow: var(--shadow-soft);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .info-card:hover { 
+      transform: translateY(-5px); 
+      box-shadow: var(--shadow-hover); 
+      border-color: var(--green-soft);
+    }
+    .info-card h3 { font-size: 20px; color: var(--green-primary); margin-bottom: 14px; display: flex; align-items: center; gap: 12px; }
+
+    .stat-box { text-align: center; background: var(--green-light); padding: 24px; border-radius: 16px; border: 1px solid var(--card-border); }
+    .stat-number { font-size: 32px; font-weight: 800; color: var(--green-primary); font-family: 'Outfit', sans-serif; }
+    .stat-label { font-size: 14px; font-weight: 600; color: var(--text-muted); margin-top: 4px; }
+
+    /* Footer & Contact */
+    footer.contact { 
+      background: var(--green-light); padding: 50px 40px; 
+      border-radius: 24px; margin: 40px 0; border: 1px solid var(--card-border);
+    }
+    .contact-btn {
+      background: #ffffff; border: 1.5px solid var(--card-border); padding: 14px 24px;
+      border-radius: 14px; font-size: 15px; font-weight: 700; display: inline-flex; align-items: center; gap: 12px;
+      transition: all 0.25s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    }
+    .contact-btn:hover { background: var(--warm-accent); color: #ffffff; border-color: var(--warm-accent); transform: translateY(-3px); }
+
+    .footer-legal {
+      margin-top: 35px;
+      padding-top: 20px;
+      border-top: 1px dashed var(--green-soft);
+      font-size: 13.5px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* Modal Mentions Légales */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(15, 28, 20, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background: #ffffff;
+      padding: 36px;
+      border-radius: 20px;
+      max-width: 650px;
+      width: 90%;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    }
+
+    /* Animations au défilement */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .layout-container { flex-direction: column-reverse; padding: 20px 16px; }
+      main.main-content { max-width: 100%; }
+      nav.sidebar-right { width: 100%; margin: 10px 0; position: static; }
+      nav.sidebar-right ul { flex-direction: row; flex-wrap: wrap; }
+      nav.sidebar-right a { flex: 1; min-width: 150px; justify-content: center; }
+      .grid-2, .grid-3, .key-skills-3 { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
@@ -239,16 +265,16 @@
   <!-- Contenu Principal -->
   <main class="main-content" id="main-content">
 
-    <!-- Présentation -->
+    <!-- Présentation / Hero Section -->
     <header class="hero reveal" id="presentation">
       
-      <div class="hero-top-layout" style="display: flex; gap: 30px; align-items: center; flex-wrap: wrap;">
+      <div class="hero-top-layout" style="display: flex; gap: 32px; align-items: center; flex-wrap: wrap;">
         
-        <!-- Cadre Photo avec Alt Text conforme pour l'accessibilité -->
+        <!-- Cadre Photo -->
         <div class="profile-photo-frame" style="
-          width: 160px; 
-          height: 160px; 
-          border-radius: 20px; 
+          width: 170px; 
+          height: 170px; 
+          border-radius: 24px; 
           border: 2px dashed var(--green-soft); 
           background: #ffffff; 
           display: flex; 
@@ -259,23 +285,23 @@
           box-shadow: var(--shadow-soft);
           flex-shrink: 0;
         ">
-          <i class="fa-solid fa-user-large" aria-hidden="true" style="font-size: 48px; color: var(--green-soft); margin-bottom: 6px;"></i>
-          <span style="font-size: 11px; color: var(--text-muted); font-weight: 600;">Ta Photo</span>
-          <!-- Exemple avec image et alt text : -->
+          <i class="fa-solid fa-user-large" aria-hidden="true" style="font-size: 52px; color: var(--green-soft); margin-bottom: 8px;"></i>
+          <span style="font-size: 12px; color: var(--text-muted); font-weight: 700;">Ta Photo</span>
+          <!-- Exemple d'utilisation avec une image : -->
           <!-- <img src="photo.jpg" alt="Photo de profil de Lohan Froissard Samain" style="width:100%; height:100%; object-fit:cover;"> -->
         </div>
 
-        <div style="flex: 1; min-width: 260px;">
+        <div style="flex: 1; min-width: 280px;">
           <div class="kicker"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Portfolio Oral — BTS SIO SISR</div>
           <h1 class="title">Lohan Froissard Samain</h1>
           <p class="hero-sub">
-            <strong>« Administrer les réseaux, c'est bien. Les sécuriser en comprenant la logique d'attaque, c'est ma priorité. »</strong>
+            « Administrer les réseaux, c'est bien. Les sécuriser en comprenant la logique d'attaque, c'est ma priorité. »
           </p>
         </div>
 
       </div>
 
-      <p style="margin-top: 22px; color: var(--text-muted); font-size: 15.5px;">
+      <p style="margin-top: 26px; color: var(--text-muted); font-size: 17px; max-width: 80ch;">
         Étudiant en BTS SIO option SISR à l'UTEC Melun et apprenti Administrateur Systèmes & Réseaux chez <strong>VINCI Smart Secure Systems</strong>. Passionné d'infrastructures système, de virtualisation et de cybersécurité.
       </p>
 
@@ -286,28 +312,28 @@
         <span class="tag"><i class="fa-solid fa-language" aria-hidden="true"></i> Anglais Technique (B2/C1)</span>
       </div>
 
-      <h3 style="margin-top: 40px; margin-bottom: 16px; font-size: 19px; color: var(--green-primary);">
+      <h3 style="margin-top: 48px; margin-bottom: 20px; font-size: 22px; color: var(--green-primary);">
         <i class="fa-solid fa-timeline" aria-hidden="true"></i> Parcours & Frise Chronologique
       </h3>
       <div class="timeline">
         <div class="timeline-item">
           <span class="timeline-date">2026 — Présent</span>
           <div class="timeline-title">Apprenti Systèmes & Réseaux — VINCI Smart Secure Systems</div>
-          <p style="font-size: 13.5px; color: var(--text-muted);">Gestion d'infrastructure, support N1/N2 et sécurisation des réseaux d'entreprise.</p>
+          <p style="font-size: 15px; color: var(--text-muted); margin-top: 4px;">Gestion d'infrastructure, support N1/N2 et sécurisation des réseaux d'entreprise.</p>
         </div>
         <div class="timeline-item">
           <span class="timeline-date">2026 — Présent</span>
           <div class="timeline-title">BTS SIO SISR — UTEC Melun</div>
-          <p style="font-size: 13.5px; color: var(--text-muted);">Formation en alternance spécialisée en réseaux et cybersécurité (77).</p>
+          <p style="font-size: 15px; color: var(--text-muted); margin-top: 4px;">Formation en alternance spécialisée en réseaux et cybersécurité (77).</p>
         </div>
         <div class="timeline-item">
           <span class="timeline-date">2026</span>
           <div class="timeline-title">Baccalauréat Général (SES / SVT)</div>
-          <p style="font-size: 13.5px; color: var(--text-muted);">Obtention du Bac. Orientation vers les systèmes et réseaux informatiques.</p>
+          <p style="font-size: 15px; color: var(--text-muted); margin-top: 4px;">Obtention du Bac. Orientation vers les systèmes et réseaux informatiques.</p>
         </div>
       </div>
 
-      <h3 style="margin-bottom: 14px; font-size: 19px; color: var(--green-primary);">
+      <h3 style="margin-bottom: 18px; font-size: 22px; color: var(--green-primary);">
         <i class="fa-solid fa-star" aria-hidden="true"></i> 3 Compétences Clés
       </h3>
       <div class="key-skills-3">
@@ -332,14 +358,15 @@
       <div class="section-head">
         <h2 class="section-title">École : UTEC Melun</h2>
       </div>
-      <div class="info-card" style="margin-bottom: 20px;">
+      
+      <div class="info-card" style="margin-bottom: 24px;">
         <h3><i class="fa-solid fa-school" aria-hidden="true"></i> Présentation de l'établissement</h3>
-        <p style="font-size: 15px; color: var(--text-muted);">
+        <p style="font-size: 16px; color: var(--text-muted);">
           L'UTEC Melun (CCI Seine-et-Marne) est un centre de formation d'apprentis majeur en Île-de-France, spécialisé dans les métiers du numérique, du tertiaire et des technologies.
         </p>
       </div>
 
-      <div class="grid-3" style="margin-bottom: 20px;">
+      <div class="grid-3" style="margin-bottom: 24px;">
         <div class="stat-box">
           <div class="stat-number">+2000</div>
           <div class="stat-label">Apprentis / An</div>
@@ -357,13 +384,13 @@
       <div class="grid-2">
         <div class="info-card">
           <h3><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Domaine de compétences</h3>
-          <p style="font-size: 14.5px; color: var(--text-muted);">
+          <p style="font-size: 15.5px; color: var(--text-muted);">
             Conception d'architectures réseau, administration système avancée, supervision de parc informatique, sécurisation des données.
           </p>
         </div>
         <div class="info-card">
           <h3><i class="fa-solid fa-book-bookmark" aria-hidden="true"></i> Le BTS SIO option SISR</h3>
-          <p style="font-size: 14.5px; color: var(--text-muted);">
+          <p style="font-size: 15.5px; color: var(--text-muted);">
             L'option SISR forme des spécialistes capables de gérer le réseau d'une entreprise, de déployer des services et d'assurer la continuité d'activité.
           </p>
         </div>
@@ -379,7 +406,7 @@
       <div class="grid-2">
         <div class="info-card">
           <h3><i class="fa-solid fa-building" aria-hidden="true"></i> Informations Générales</h3>
-          <ul style="list-style: none; font-size: 14px; color: var(--text-muted); display: flex; flex-direction: column; gap: 10px;">
+          <ul style="list-style: none; font-size: 15px; color: var(--text-muted); display: flex; flex-direction: column; gap: 12px;">
             <li><strong>Entreprise :</strong> VINCI Smart Secure Systems</li>
             <li><strong>Secteur :</strong> Groupe VINCI (Energies & Télécoms)</li>
             <li><strong>Domaine :</strong> Systèmes de sécurité, réseaux & sûreté électronique</li>
@@ -388,10 +415,10 @@
         </div>
         <div class="info-card">
           <h3><i class="fa-solid fa-user-gear" aria-hidden="true"></i> Mon Service & Missions</h3>
-          <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 10px;">
+          <p style="font-size: 15px; color: var(--text-muted); margin-bottom: 12px;">
             <strong>Service :</strong> Direction des Systèmes d'Information / Support IT
           </p>
-          <ul style="font-size: 13.5px; color: var(--text-muted); padding-left: 18px; display: flex; flex-direction: column; gap: 6px;">
+          <ul style="font-size: 14.5px; color: var(--text-muted); padding-left: 20px; display: flex; flex-direction: column; gap: 8px;">
             <li>Support niveau 1/2 aux collaborateurs et résolution d'incidents.</li>
             <li>Administration Active Directory, gestion des accès et droits.</li>
             <li>Supervision du parc informatique, des équipements réseau et sauvegardes.</li>
@@ -409,24 +436,25 @@
       <div class="grid-3">
         <div class="info-card">
           <h3><i class="fa-solid fa-network-wired" aria-hidden="true"></i> Réseau</h3>
-          <p style="font-size: 13.5px; color: var(--text-muted);">TCP/IP, IPv4, VLANs, VPN, Routage, Commutation.</p>
+          <p style="font-size: 15px; color: var(--text-muted);">TCP/IP, IPv4, VLANs, VPN, Routage, Commutation.</p>
         </div>
         <div class="info-card">
           <h3><i class="fa-solid fa-server" aria-hidden="true"></i> Systèmes</h3>
-          <p style="font-size: 13.5px; color: var(--text-muted);">Windows Server (AD DS, DNS, DHCP), Linux (Debian, Ubuntu, Mint), Scripting Python/Bash.</p>
+          <p style="font-size: 15px; color: var(--text-muted);">Windows Server (AD DS, DNS, DHCP), Linux (Debian, Ubuntu, Mint), Scripting Python/Bash.</p>
         </div>
         <div class="info-card">
           <h3><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Cybersécurité</h3>
-          <p style="font-size: 13.5px; color: var(--text-muted);">Hardening d'OS, bonnes pratiques ANSSI, Reverse Eng. bas niveau.</p>
+          <p style="font-size: 15px; color: var(--text-muted);">Hardening d'OS, bonnes pratiques ANSSI, Reverse Eng. bas niveau.</p>
         </div>
       </div>
     </section>
 
     <!-- Footer Contact & Mentions Légales RGPD -->
     <footer class="contact reveal" id="contact">
-      <h2 style="font-size: 26px; color: var(--green-primary); margin-bottom: 10px;">Contact & Liens Réseaux</h2>
-      <p style="font-size: 14.5px; color: var(--text-muted); margin-bottom: 22px;">Disponible pour échanger sur mon parcours.</p>
-      <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+      <h2 style="font-size: 28px; color: var(--green-primary); margin-bottom: 12px;">Contact & Liens Réseaux</h2>
+      <p style="font-size: 16px; color: var(--text-muted); margin-bottom: 26px;">Disponible pour échanger sur mon parcours et mes projets.</p>
+      
+      <div style="display: flex; gap: 16px; flex-wrap: wrap;">
         <a href="mailto:lohanf77@gmail.com" class="contact-btn"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Email</a>
         <a href="https://www.linkedin.com/in/lohan-froissard-samain-678bb63b8" target="_blank" rel="noopener noreferrer" class="contact-btn"><i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn</a>
         <a href="https://github.com/Evo-off" target="_blank" rel="noopener noreferrer" class="contact-btn"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a>
@@ -435,7 +463,7 @@
       <div class="footer-legal">
         <span>© Lohan Froissard Samain — BTS SIO SISR</span>
         <span>
-          <a href="#" id="open-legal" style="text-decoration: underline;">Mentions Légales & Confidentialité (RGPD)</a>
+          <a href="#" id="open-legal" style="text-decoration: underline; font-weight: 600;">Mentions Légales & Confidentialité (RGPD)</a>
         </span>
       </div>
     </footer>
@@ -448,11 +476,11 @@
       <i class="fa-solid fa-compass" aria-hidden="true"></i> Navigation
     </div>
     <ul>
-      <li><a href="#presentation"><i class="fa-solid fa-user" aria-hidden="true"></i> Présentation</a></li>
-      <li><a href="#ecole"><i class="fa-solid fa-school" aria-hidden="true"></i> École (UTEC)</a></li>
-      <li><a href="#entreprise"><i class="fa-solid fa-building" aria-hidden="true"></i> Entreprise (VINCI)</a></li>
-      <li><a href="#competences"><i class="fa-solid fa-gears" aria-hidden="true"></i> Compétences</a></li>
-      <li><a href="#contact"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Contact</a></li>
+      <li><a href="#presentation" class="nav-link"><i class="fa-solid fa-user" aria-hidden="true"></i> Présentation</a></li>
+      <li><a href="#ecole" class="nav-link"><i class="fa-solid fa-school" aria-hidden="true"></i> École (UTEC)</a></li>
+      <li><a href="#entreprise" class="nav-link"><i class="fa-solid fa-building" aria-hidden="true"></i> Entreprise (VINCI)</a></li>
+      <li><a href="#competences" class="nav-link"><i class="fa-solid fa-gears" aria-hidden="true"></i> Compétences</a></li>
+      <li><a href="#contact" class="nav-link"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Contact</a></li>
     </ul>
   </nav>
 
@@ -461,23 +489,23 @@
 <!-- Modal Mentions Légales -->
 <div class="modal" id="legal-modal">
   <div class="modal-content">
-    <h3 style="color: var(--green-primary); margin-bottom: 15px;">Mentions Légales & Confidentialité</h3>
-    <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px;">
+    <h3 style="color: var(--green-primary); font-size: 22px; margin-bottom: 18px;">Mentions Légales & Confidentialité</h3>
+    <p style="font-size: 14.5px; color: var(--text-muted); margin-bottom: 12px;">
       <strong>Éditeur du site :</strong> Lohan Froissard Samain — Étudiant en BTS SIO SISR à l'UTEC Melun.
     </p>
-    <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px;">
+    <p style="font-size: 14.5px; color: var(--text-muted); margin-bottom: 12px;">
       <strong>Hébergement :</strong> GitHub Pages.
     </p>
-    <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px;">
+    <p style="font-size: 14.5px; color: var(--text-muted); margin-bottom: 16px;">
       <strong>Données personnelles & Cookies (RGPD) :</strong> Ce site web est un portfolio académique personnel. Il ne collecte aucune donnée personnelle, ne stocke aucun cookie de suivi et n'utilise aucun outil d'analyse tiers.
     </p>
-    <button id="close-legal" style="margin-top: 15px; background: var(--green-primary); color: white; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer;">Fermer</button>
+    <button id="close-legal" style="background: var(--green-primary); color: white; border: none; padding: 10px 20px; border-radius: 10px; font-weight: 600; cursor: pointer; transition: background 0.2s;">Fermer</button>
   </div>
 </div>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    /* Observer animations */
+    /* Animation au Scroll (Intersection Observer) */
     const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
     const observer = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
@@ -490,14 +518,50 @@
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    /* Modal Mentions Légales */
+    /* Active State Navigation au scroll */
+    const sections = document.querySelectorAll('header, section, footer');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= (sectionTop - 150)) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    /* Gestion Modal Mentions Légales */
     const modal = document.getElementById('legal-modal');
-    document.getElementById('open-legal').addEventListener('click', (e) => {
+    const openBtn = document.getElementById('open-legal');
+    const closeBtn = document.getElementById('close-legal');
+
+    openBtn.addEventListener('click', (e) => {
       e.preventDefault();
       modal.style.display = 'flex';
     });
-    document.getElementById('close-legal').addEventListener('click', () => {
+
+    closeBtn.addEventListener('click', () => {
       modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) modal.style.display = 'none';
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.style.display === 'flex') {
+        modal.style.display = 'none';
+      }
     });
   });
 </script>
