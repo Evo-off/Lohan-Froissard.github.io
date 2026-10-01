@@ -48,34 +48,34 @@
 
   a { color: inherit; text-decoration: none; }
 
-  /* Conteneur global agrandi */
+  /* Conteneur global */
   .layout-container {
     display: flex;
-    max-width: 1360px; /* Agrandissement du site (1240px -> 1360px) */
+    max-width: 1360px;
     margin: 0 auto;
     position: relative;
     gap: 30px;
     padding: 0 20px;
   }
 
-  /* Zone de contenu principal élargie */
+  /* Main Content */
   main.main-content {
     flex: 1;
-    max-width: 1000px; /* Élégissement de la zone principale (900px -> 1000px) */
+    max-width: 1000px;
   }
 
-  /* Sidebar Navigation (Mise en valeur) */
+  /* Navigation Latérale */
   nav.sidebar-right {
-    width: 290px; /* Menu plus large (270px -> 290px) */
+    width: 290px;
     position: sticky;
     top: 30px;
     height: fit-content;
     max-height: calc(100vh - 60px);
     background: #ffffff;
-    border: 2px solid var(--green-soft); /* Bordure renforcée */
+    border: 2px solid var(--green-soft);
     border-radius: 20px;
     padding: 24px 18px;
-    box-shadow: var(--shadow-strong); /* Ombre plus prononcée pour détacher du fond */
+    box-shadow: var(--shadow-strong);
     margin-top: 40px;
     z-index: 100;
   }
@@ -111,14 +111,15 @@
 
   nav.sidebar-right a i { font-size: 16px; width: 20px; text-align: center; color: var(--green-primary); }
   
-  nav.sidebar-right a:hover { 
+  nav.sidebar-right a:hover, nav.sidebar-right a:focus { 
     background: var(--green-primary); 
     color: #ffffff; 
     border-color: var(--green-primary);
-    transform: translateX(4px); /* Petit décalage interactif vers la droite */
+    transform: translateX(4px);
+    outline: none;
   }
 
-  nav.sidebar-right a:hover i { color: #ffffff; }
+  nav.sidebar-right a:hover i, nav.sidebar-right a:focus i { color: #ffffff; }
 
   /* Hero */
   header.hero { padding: 60px 0 40px; }
@@ -141,7 +142,7 @@
   .section-head { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
   h2.section-title { font-size: clamp(24px, 3vw, 32px); color: var(--green-primary); }
 
-  /* Section 1 - Timeline & Key Skills */
+  /* Timeline & Cards */
   .timeline { margin: 20px 0 30px; border-left: 3px solid var(--green-soft); padding-left: 20px; display: flex; flex-direction: column; gap: 20px; }
   .timeline-item { position: relative; }
   .timeline-item::before {
@@ -156,7 +157,6 @@
   .key-skill-card h4 { color: var(--warm-accent); font-size: 16px; margin-bottom: 6px; }
   .key-skill-card p { font-size: 13.5px; color: var(--text-main); }
 
-  /* Cards & Grids */
   .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   
@@ -165,17 +165,14 @@
     border-radius: 16px; padding: 26px; box-shadow: var(--shadow-soft);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
-  .info-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-hover);
-  }
+  .info-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
   .info-card h3 { font-size: 17px; color: var(--green-primary); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
 
   .stat-box { text-align: center; background: var(--green-light); padding: 16px; border-radius: 12px; }
   .stat-number { font-size: 24px; font-weight: 700; color: var(--green-primary); font-family: 'Outfit', sans-serif; }
   .stat-label { font-size: 12.5px; color: var(--text-muted); }
 
-  /* Footer Contact */
+  /* Footer & Legal */
   footer.contact { background: var(--green-light); padding: 45px 30px; border-radius: 20px; margin: 40px 0; }
   .contact-btn {
     background: #ffffff; border: 1px solid var(--card-border); padding: 12px 20px;
@@ -184,6 +181,38 @@
   }
   .contact-btn:hover { background: var(--warm-accent); color: #ffffff; transform: translateY(-2px); }
 
+  .footer-legal {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px dashed var(--card-border);
+    font-size: 12px;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* Modal Mentions Légales */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 16px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
   /* Animations au défilement */
   .reveal {
     opacity: 0;
@@ -191,11 +220,7 @@
     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
   }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
   @media (max-width: 980px) {
     .layout-container { flex-direction: column-reverse; padding: 0 15px; }
@@ -212,15 +237,14 @@
 <div class="layout-container">
 
   <!-- Contenu Principal -->
-  <main class="main-content">
+  <main class="main-content" id="main-content">
 
     <!-- Présentation -->
     <header class="hero reveal" id="presentation">
       
-      <!-- Cadre Photo et Titres -->
       <div class="hero-top-layout" style="display: flex; gap: 30px; align-items: center; flex-wrap: wrap;">
         
-        <!-- Cadre Photo -->
+        <!-- Cadre Photo avec Alt Text conforme pour l'accessibilité -->
         <div class="profile-photo-frame" style="
           width: 160px; 
           height: 160px; 
@@ -235,13 +259,14 @@
           box-shadow: var(--shadow-soft);
           flex-shrink: 0;
         ">
-          <i class="fa-solid fa-user-large" style="font-size: 48px; color: var(--green-soft); margin-bottom: 6px;"></i>
+          <i class="fa-solid fa-user-large" aria-hidden="true" style="font-size: 48px; color: var(--green-soft); margin-bottom: 6px;"></i>
           <span style="font-size: 11px; color: var(--text-muted); font-weight: 600;">Ta Photo</span>
+          <!-- Exemple avec image et alt text : -->
+          <!-- <img src="photo.jpg" alt="Photo de profil de Lohan Froissard Samain" style="width:100%; height:100%; object-fit:cover;"> -->
         </div>
 
-        <!-- Infos principales -->
         <div style="flex: 1; min-width: 260px;">
-          <div class="kicker"><i class="fa-solid fa-graduation-cap"></i> Portfolio Oral — BTS SIO SISR</div>
+          <div class="kicker"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Portfolio Oral — BTS SIO SISR</div>
           <h1 class="title">Lohan Froissard Samain</h1>
           <p class="hero-sub">
             <strong>« Administrer les réseaux, c'est bien. Les sécuriser en comprenant la logique d'attaque, c'est ma priorité. »</strong>
@@ -250,21 +275,19 @@
 
       </div>
 
-      <!-- Description -->
       <p style="margin-top: 22px; color: var(--text-muted); font-size: 15.5px;">
         Étudiant en BTS SIO option SISR à l'UTEC Melun et apprenti Administrateur Systèmes & Réseaux chez <strong>VINCI Smart Secure Systems</strong>. Passionné d'infrastructures système, de virtualisation et de cybersécurité.
       </p>
 
       <div class="hero-tags">
-        <span class="tag"><i class="fa-solid fa-id-card"></i> 18 ans — Permis B</span>
-        <span class="tag"><i class="fa-solid fa-building-user"></i> VINCI Smart Secure Systems</span>
-        <span class="tag"><i class="fa-solid fa-certificate"></i> PIX : 531 / 896</span>
-        <span class="tag"><i class="fa-solid fa-language"></i> Anglais Technique (B2/C1)</span>
+        <span class="tag"><i class="fa-solid fa-id-card" aria-hidden="true"></i> 18 ans — Permis B</span>
+        <span class="tag"><i class="fa-solid fa-building-user" aria-hidden="true"></i> VINCI Smart Secure Systems</span>
+        <span class="tag"><i class="fa-solid fa-certificate" aria-hidden="true"></i> PIX : 531 / 896</span>
+        <span class="tag"><i class="fa-solid fa-language" aria-hidden="true"></i> Anglais Technique (B2/C1)</span>
       </div>
 
-      <!-- Timeline / Parcours -->
       <h3 style="margin-top: 40px; margin-bottom: 16px; font-size: 19px; color: var(--green-primary);">
-        <i class="fa-solid fa-timeline"></i> Parcours & Frise Chronologique
+        <i class="fa-solid fa-timeline" aria-hidden="true"></i> Parcours & Frise Chronologique
       </h3>
       <div class="timeline">
         <div class="timeline-item">
@@ -284,9 +307,8 @@
         </div>
       </div>
 
-      <!-- 3 Compétences clés -->
       <h3 style="margin-bottom: 14px; font-size: 19px; color: var(--green-primary);">
-        <i class="fa-solid fa-star"></i> 3 Compétences Clés
+        <i class="fa-solid fa-star" aria-hidden="true"></i> 3 Compétences Clés
       </h3>
       <div class="key-skills-3">
         <div class="key-skill-card">
@@ -311,7 +333,7 @@
         <h2 class="section-title">École : UTEC Melun</h2>
       </div>
       <div class="info-card" style="margin-bottom: 20px;">
-        <h3><i class="fa-solid fa-school"></i> Présentation de l'établissement</h3>
+        <h3><i class="fa-solid fa-school" aria-hidden="true"></i> Présentation de l'établissement</h3>
         <p style="font-size: 15px; color: var(--text-muted);">
           L'UTEC Melun (CCI Seine-et-Marne) est un centre de formation d'apprentis majeur en Île-de-France, spécialisé dans les métiers du numérique, du tertiaire et des technologies.
         </p>
@@ -334,13 +356,13 @@
 
       <div class="grid-2">
         <div class="info-card">
-          <h3><i class="fa-solid fa-layer-group"></i> Domaine de compétences</h3>
+          <h3><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Domaine de compétences</h3>
           <p style="font-size: 14.5px; color: var(--text-muted);">
             Conception d'architectures réseau, administration système avancée, supervision de parc informatique, sécurisation des données.
           </p>
         </div>
         <div class="info-card">
-          <h3><i class="fa-solid fa-book-bookmark"></i> Le BTS SIO option SISR</h3>
+          <h3><i class="fa-solid fa-book-bookmark" aria-hidden="true"></i> Le BTS SIO option SISR</h3>
           <p style="font-size: 14.5px; color: var(--text-muted);">
             L'option SISR forme des spécialistes capables de gérer le réseau d'une entreprise, de déployer des services et d'assurer la continuité d'activité.
           </p>
@@ -356,7 +378,7 @@
       
       <div class="grid-2">
         <div class="info-card">
-          <h3><i class="fa-solid fa-building"></i> Informations Générales</h3>
+          <h3><i class="fa-solid fa-building" aria-hidden="true"></i> Informations Générales</h3>
           <ul style="list-style: none; font-size: 14px; color: var(--text-muted); display: flex; flex-direction: column; gap: 10px;">
             <li><strong>Entreprise :</strong> VINCI Smart Secure Systems</li>
             <li><strong>Secteur :</strong> Groupe VINCI (Energies & Télécoms)</li>
@@ -365,7 +387,7 @@
           </ul>
         </div>
         <div class="info-card">
-          <h3><i class="fa-solid fa-user-gear"></i> Mon Service & Missions</h3>
+          <h3><i class="fa-solid fa-user-gear" aria-hidden="true"></i> Mon Service & Missions</h3>
           <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 10px;">
             <strong>Service :</strong> Direction des Systèmes d'Information / Support IT
           </p>
@@ -386,70 +408,97 @@
 
       <div class="grid-3">
         <div class="info-card">
-          <h3><i class="fa-solid fa-network-wired"></i> Réseau</h3>
+          <h3><i class="fa-solid fa-network-wired" aria-hidden="true"></i> Réseau</h3>
           <p style="font-size: 13.5px; color: var(--text-muted);">TCP/IP, IPv4, VLANs, VPN, Routage, Commutation.</p>
         </div>
         <div class="info-card">
-          <h3><i class="fa-solid fa-server"></i> Systèmes</h3>
+          <h3><i class="fa-solid fa-server" aria-hidden="true"></i> Systèmes</h3>
           <p style="font-size: 13.5px; color: var(--text-muted);">Windows Server (AD DS, DNS, DHCP), Linux (Debian, Ubuntu, Mint), Scripting Python/Bash.</p>
         </div>
         <div class="info-card">
-          <h3><i class="fa-solid fa-shield-halved"></i> Cybersécurité</h3>
+          <h3><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Cybersécurité</h3>
           <p style="font-size: 13.5px; color: var(--text-muted);">Hardening d'OS, bonnes pratiques ANSSI, Reverse Eng. bas niveau.</p>
         </div>
       </div>
     </section>
 
-    <!-- Footer Contact -->
+    <!-- Footer Contact & Mentions Légales RGPD -->
     <footer class="contact reveal" id="contact">
       <h2 style="font-size: 26px; color: var(--green-primary); margin-bottom: 10px;">Contact & Liens Réseaux</h2>
       <p style="font-size: 14.5px; color: var(--text-muted); margin-bottom: 22px;">Disponible pour échanger sur mon parcours.</p>
       <div style="display: flex; gap: 14px; flex-wrap: wrap;">
-        <a href="mailto:lohanf77@gmail.com" class="contact-btn"><i class="fa-solid fa-envelope"></i> Email</a>
-        <a href="https://www.linkedin.com/in/lohan-froissard-samain-678bb63b8" target="_blank" class="contact-btn"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-        <a href="https://github.com/Evo-off" target="_blank" class="contact-btn"><i class="fa-brands fa-github"></i> GitHub</a>
+        <a href="mailto:lohanf77@gmail.com" class="contact-btn"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Email</a>
+        <a href="https://www.linkedin.com/in/lohan-froissard-samain-678bb63b8" target="_blank" rel="noopener noreferrer" class="contact-btn"><i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn</a>
+        <a href="https://github.com/Evo-off" target="_blank" rel="noopener noreferrer" class="contact-btn"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a>
       </div>
-      <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 25px;">© Lohan Froissard Samain — UTEC Melun / VINCI Smart Secure Systems — BTS SIO SISR</p>
+      
+      <div class="footer-legal">
+        <span>© Lohan Froissard Samain — BTS SIO SISR</span>
+        <span>
+          <a href="#" id="open-legal" style="text-decoration: underline;">Mentions Légales & Confidentialité (RGPD)</a>
+        </span>
+      </div>
     </footer>
 
   </main>
 
-  <!-- Navigation Latérale Mise en Valeur -->
-  <nav class="sidebar-right">
+  <!-- Navigation Latérale -->
+  <nav class="sidebar-right" aria-label="Menu principal">
     <div class="nav-header">
-      <i class="fa-solid fa-compass"></i> Navigation
+      <i class="fa-solid fa-compass" aria-hidden="true"></i> Navigation
     </div>
     <ul>
-      <li><a href="#presentation"><i class="fa-solid fa-user"></i> Présentation</a></li>
-      <li><a href="#ecole"><i class="fa-solid fa-school"></i> École (UTEC)</a></li>
-      <li><a href="#entreprise"><i class="fa-solid fa-building"></i> Entreprise (VINCI)</a></li>
-      <li><a href="#competences"><i class="fa-solid fa-gears"></i> Compétences</a></li>
-      <li><a href="#contact"><i class="fa-solid fa-paper-plane"></i> Contact</a></li>
+      <li><a href="#presentation"><i class="fa-solid fa-user" aria-hidden="true"></i> Présentation</a></li>
+      <li><a href="#ecole"><i class="fa-solid fa-school" aria-hidden="true"></i> École (UTEC)</a></li>
+      <li><a href="#entreprise"><i class="fa-solid fa-building" aria-hidden="true"></i> Entreprise (VINCI)</a></li>
+      <li><a href="#competences"><i class="fa-solid fa-gears" aria-hidden="true"></i> Compétences</a></li>
+      <li><a href="#contact"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Contact</a></li>
     </ul>
   </nav>
 
 </div>
 
-<!-- Script d'animation au défilement -->
+<!-- Modal Mentions Légales -->
+<div class="modal" id="legal-modal">
+  <div class="modal-content">
+    <h3 style="color: var(--green-primary); margin-bottom: 15px;">Mentions Légales & Confidentialité</h3>
+    <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px;">
+      <strong>Éditeur du site :</strong> Lohan Froissard Samain — Étudiant en BTS SIO SISR à l'UTEC Melun.
+    </p>
+    <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px;">
+      <strong>Hébergement :</strong> GitHub Pages.
+    </p>
+    <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 10px;">
+      <strong>Données personnelles & Cookies (RGPD) :</strong> Ce site web est un portfolio académique personnel. Il ne collecte aucune donnée personnelle, ne stocke aucun cookie de suivi et n'utilise aucun outil d'analyse tiers.
+    </p>
+    <button id="close-legal" style="margin-top: 15px; background: var(--green-primary); color: white; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer;">Fermer</button>
+  </div>
+</div>
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.15
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
+    /* Observer animations */
+    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+    const observer = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+          obs.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
-    const revealElements = document.querySelectorAll('.reveal');
-    revealElements.forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* Modal Mentions Légales */
+    const modal = document.getElementById('legal-modal');
+    document.getElementById('open-legal').addEventListener('click', (e) => {
+      e.preventDefault();
+      modal.style.display = 'flex';
+    });
+    document.getElementById('close-legal').addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
   });
 </script>
 
