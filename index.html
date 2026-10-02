@@ -122,14 +122,14 @@
     }
 
     nav.sidebar-right a:hover, nav.sidebar-right a.active { 
-      background: var(--green-primary); 
-      color: #ffffff; 
-      border-color: var(--green-primary);
+      background: var(--green-primary) !important; 
+      color: #ffffff !important; 
+      border-color: var(--green-primary) !important;
       transform: translateX(6px);
       box-shadow: 0 8px 20px rgba(31, 66, 35, 0.2);
     }
 
-    nav.sidebar-right a:hover i, nav.sidebar-right a.active i { color: #ffffff; }
+    nav.sidebar-right a:hover i, nav.sidebar-right a.active i { color: #ffffff !important; }
 
     /* Hero & En-tête */
     header.hero { padding: 30px 0 50px; }
@@ -223,8 +223,8 @@
     .stat-number { font-size: 32px; font-weight: 800; color: var(--green-primary); font-family: 'Outfit', sans-serif; }
     .stat-label { font-size: 14px; font-weight: 600; color: var(--text-muted); margin-top: 4px; }
 
-    /* Footer & Contact */
-    footer.contact-section { 
+    /* Contact Section */
+    section.contact-section { 
       background: var(--green-light); padding: 50px 40px; 
       border-radius: 24px; margin: 40px 0; border: 1px solid var(--card-border);
     }
@@ -502,8 +502,8 @@
       </div>
     </section>
 
-    <!-- Footer Contact & Mentions Légales RGPD -->
-    <footer class="contact-section reveal" id="contact">
+    <!-- Contact & Mentions Légales RGPD -->
+    <section class="contact-section reveal" id="contact">
       <h2 style="font-size: 28px; color: var(--green-primary); margin-bottom: 12px;">Contact & Liens Réseaux</h2>
       <p style="font-size: 16px; color: var(--text-muted); margin-bottom: 26px;">N'hésitez pas à me contacter pour toute information ou opportunité d'alternance[cite: 1].</p>
       
@@ -519,7 +519,7 @@
           <a href="#" id="open-legal" style="text-decoration: underline; font-weight: 600;">Mentions Légales & Confidentialité (RGPD)</a>
         </span>
       </div>
-    </footer>
+    </section>
 
   </main>
 
@@ -572,8 +572,8 @@
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    /* Active State Navigation au scroll & clic */
-    const sections = document.querySelectorAll('header, section, footer');
+    /* Active State Navigation */
+    const sections = document.querySelectorAll('header, section');
     const navLinks = document.querySelectorAll('.nav-link');
 
     const setActiveLink = (id) => {
@@ -590,7 +590,7 @@
       let current = '';
       sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        if (window.pageYOffset >= (sectionTop - 220)) {
+        if (window.pageYOffset >= (sectionTop - 250)) {
           current = section.getAttribute('id');
         }
       });
