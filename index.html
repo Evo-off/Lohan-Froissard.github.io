@@ -69,7 +69,7 @@
       max-width: 1000px;
     }
 
-    /* Navigation Latérale agrandie */
+    /* Navigation Latérale */
     nav.sidebar-right {
       width: 360px;
       position: sticky;
@@ -97,25 +97,25 @@
       margin-bottom: 24px;
     }
 
-    nav.sidebar-right ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    nav.sidebar-right ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
 
     nav.sidebar-right a {
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 700;
       color: var(--text-main);
-      padding: 16px 20px;
+      padding: 14px 18px;
       border-radius: 16px;
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
       background: #ffffff;
       border: 1.5px solid var(--card-border);
       transition: all 0.25s ease;
     }
 
     nav.sidebar-right a i { 
-      font-size: 22px; 
-      width: 26px; 
+      font-size: 20px; 
+      width: 24px; 
       text-align: center; 
       color: var(--green-primary); 
       transition: color 0.25s; 
@@ -125,14 +125,14 @@
       background: var(--green-primary); 
       color: #ffffff; 
       border-color: var(--green-primary);
-      transform: translateX(8px);
-      box-shadow: 0 8px 20px rgba(31, 66, 35, 0.25);
+      transform: translateX(6px);
+      box-shadow: 0 8px 20px rgba(31, 66, 35, 0.2);
     }
 
     nav.sidebar-right a:hover i, nav.sidebar-right a.active i { color: #ffffff; }
 
     /* Hero & En-tête */
-    header.hero { padding: 40px 0 50px; }
+    header.hero { padding: 30px 0 50px; }
     
     .kicker {
       display: inline-flex; align-items: center; gap: 10px;
@@ -141,21 +141,41 @@
       border: 1px solid rgba(217, 107, 39, 0.2);
     }
 
-    h1.title { font-size: clamp(38px, 5.2vw, 62px); font-weight: 800; color: var(--green-primary); }
+    h1.title { font-size: clamp(36px, 5vw, 58px); font-weight: 800; color: var(--green-primary); }
     
     .hero-tags { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
     
     .tag {
       background: #ffffff; border: 1px solid var(--card-border);
-      padding: 10px 20px; border-radius: 100px; font-size: 14px; font-weight: 600;
+      padding: 10px 18px; border-radius: 100px; font-size: 14px; font-weight: 600;
       color: var(--green-primary); display: inline-flex; align-items: center; gap: 10px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    .profile-img-container {
+      width: 160px;
+      height: 160px;
+      border-radius: 24px;
+      border: 3px solid var(--green-soft);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      flex-shrink: 0;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .profile-img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     /* Sections */
     section { padding: 60px 0; border-top: 2px solid var(--green-light); }
     .section-head { display: flex; align-items: center; gap: 14px; margin-bottom: 32px; }
-    h2.section-title { font-size: clamp(28px, 3.5vw, 38px); font-weight: 700; color: var(--green-primary); }
+    h2.section-title { font-size: clamp(26px, 3.5vw, 36px); font-weight: 700; color: var(--green-primary); }
 
     /* Timeline & Compétences Clés */
     .timeline { margin: 24px 0 36px; border-left: 4px solid var(--green-soft); padding-left: 24px; display: flex; flex-direction: column; gap: 24px; }
@@ -191,6 +211,13 @@
       border-color: var(--green-soft);
     }
     .info-card h3 { font-size: 20px; color: var(--green-primary); margin-bottom: 14px; display: flex; align-items: center; gap: 12px; }
+
+    /* Badges de technologies pour projets */
+    .tech-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+    .badge {
+      background: var(--green-light); color: var(--green-primary);
+      padding: 4px 12px; border-radius: 8px; font-size: 13px; font-weight: 700;
+    }
 
     .stat-box { text-align: center; background: var(--green-light); padding: 24px; border-radius: 16px; border: 1px solid var(--card-border); }
     .stat-number { font-size: 32px; font-weight: 800; color: var(--green-primary); font-family: 'Outfit', sans-serif; }
@@ -257,7 +284,7 @@
       main.main-content { max-width: 100%; }
       nav.sidebar-right { width: 100%; margin: 10px 0; position: static; padding: 20px; }
       nav.sidebar-right ul { flex-direction: row; flex-wrap: wrap; }
-      nav.sidebar-right a { flex: 1; min-width: 160px; justify-content: center; font-size: 15px; padding: 12px 16px; }
+      nav.sidebar-right a { flex: 1; min-width: 140px; justify-content: center; font-size: 14px; padding: 10px 14px; }
       .grid-2, .grid-3, .key-skills-3 { grid-template-columns: 1fr; }
     }
   </style>
@@ -274,23 +301,9 @@
       
       <div class="hero-top-layout" style="display: flex; gap: 32px; align-items: center; flex-wrap: wrap;">
         
-        <!-- Cadre Photo -->
-        <div class="profile-photo-frame" style="
-          width: 170px; 
-          height: 170px; 
-          border-radius: 24px; 
-          border: 2px dashed var(--green-soft); 
-          background: #ffffff; 
-          display: flex; 
-          flex-direction: column;
-          align-items: center; 
-          justify-content: center; 
-          overflow: hidden; 
-          box-shadow: var(--shadow-soft);
-          flex-shrink: 0;
-        ">
-          <i class="fa-solid fa-user-large" aria-hidden="true" style="font-size: 52px; color: var(--green-soft); margin-bottom: 8px;"></i>
-          <span style="font-size: 12px; color: var(--text-muted); font-weight: 700;">Ta Photo</span>
+        <!-- Photo de profil -->
+        <div class="profile-img-container">
+          <img src="photo.jpg" alt="Lohan Froissard Samain" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Lohan+Froissard&background=1f4223&color=fff&size=200';">
         </div>
 
         <div style="flex: 1; min-width: 280px;">
@@ -301,11 +314,11 @@
       </div>
 
       <p style="margin-top: 26px; color: var(--text-muted); font-size: 17px; max-width: 80ch;">
-        Étudiant en BTS SIO option SISR à l'UTEC Melun et apprenti Administrateur Systèmes & Réseaux chez <strong>VINCI Smart Secure Systems</strong>. Passionné d'infrastructures système, de virtualisation et de cybersécurité.
+        Étudiant en BTS SIO option SISR à l'UTEC Melun et apprenti Administrateur Systèmes & Réseaux chez <strong>VINCI Smart Secure Systems</strong>. Actuellement en cours de montée en compétences dans les domaines des infrastructures système, de la virtualisation et de la cybersécurité.
       </p>
 
       <div class="hero-tags">
-        <span class="tag"><i class="fa-solid fa-id-card" aria-hidden="true"></i> 18 ans — Permis B</span>
+        <span class="tag"><i class="fa-solid fa-id-card" aria-hidden="true"></i> Permis B</span>
         <span class="tag"><i class="fa-solid fa-building-user" aria-hidden="true"></i> VINCI Smart Secure Systems</span>
         <span class="tag"><i class="fa-solid fa-certificate" aria-hidden="true"></i> PIX : 531 / 896</span>
         <span class="tag"><i class="fa-solid fa-language" aria-hidden="true"></i> Anglais Technique (B2/C1)</span>
@@ -316,37 +329,37 @@
       </h3>
       <div class="timeline">
         <div class="timeline-item">
-          <span class="timeline-date">2026 — Présent</span>
+          <span class="timeline-date">2024 — Présent</span>
           <div class="timeline-title">Apprenti Systèmes & Réseaux — VINCI Smart Secure Systems</div>
-          <p style="font-size: 15px; color: var(--text-muted); margin-top: 4px;">Gestion d'infrastructure, support N1/N2 et sécurisation des réseaux d'entreprise.</p>
+          <p style="font-size: 15px; color: var(--text-muted); margin-top: 4px;">Apprentissage pratique de la gestion d'infrastructure, support N1/N2 et sensibilisation à la sécurisation des réseaux d'entreprise.</p>
         </div>
         <div class="timeline-item">
-          <span class="timeline-date">2026 — Présent</span>
+          <span class="timeline-date">2024 — Présent</span>
           <div class="timeline-title">BTS SIO SISR — UTEC Melun</div>
-          <p style="font-size: 15px; color: var(--text-muted); margin-top: 4px;">Formation en alternance spécialisée en réseaux et cybersécurité (77).</p>
+          <p style="font-size: 15px; color: var(--text-muted); margin-top: 4px;">Formation académique en alternance axée sur l'administration réseau et la cybersécurité.</p>
         </div>
         <div class="timeline-item">
-          <span class="timeline-date">2026</span>
+          <span class="timeline-date">2024</span>
           <div class="timeline-title">Baccalauréat Général (SES / SVT)</div>
-          <p style="font-size: 15px; color: var(--text-muted); margin-top: 4px;">Obtention du Bac. Orientation vers les systèmes et réseaux informatiques.</p>
+          <p style="font-size: 15px; color: var(--text-muted); margin-top: 4px;">Obtention du Bac. Reconversion/orientation vers les systèmes et réseaux informatiques.</p>
         </div>
       </div>
 
       <h3 style="margin-bottom: 18px; font-size: 22px; color: var(--green-primary);">
-        <i class="fa-solid fa-star" aria-hidden="true"></i> 3 Compétences Clés
+        <i class="fa-solid fa-star" aria-hidden="true"></i> 3 Axes d'Apprentissage Clés
       </h3>
       <div class="key-skills-3">
         <div class="key-skill-card">
           <h4>1. Admin Systèmes & OS</h4>
-          <p>Windows Server (AD DS, DNS, DHCP), Linux (Debian, Ubuntu, Mint).</p>
+          <p>Pratique sur Windows Server (AD DS, DNS, DHCP, GPO) et environnements Linux (Debian, Ubuntu, Mint).</p>
         </div>
         <div class="key-skill-card">
           <h4>2. Virtualisation & Réseau</h4>
-          <p>VMware, VirtualBox, Hyper-V, VLANs, Adressage IPv4, VPN.</p>
+          <p>Prise en main de VMware ESXi, VirtualBox, Hyper-V, segmentation VLANs, IPv4/IPv6 et VPN.</p>
         </div>
         <div class="key-skill-card">
           <h4>3. Scripting & Sécurité</h4>
-          <p>Automatisation Python/Bash, bonnes pratiques ANSSI, analyse Hexa.</p>
+          <p>Initiation à l'automatisation (Python/Bash/PowerShell) et intégration des règles d'hygiène informatique (ANSSI).</p>
         </div>
       </div>
 
@@ -382,15 +395,15 @@
 
       <div class="grid-2">
         <div class="info-card">
-          <h3><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Domaine de compétences</h3>
+          <h3><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Domaines d'apprentissage</h3>
           <p style="font-size: 15.5px; color: var(--text-muted);">
-            Conception d'architectures réseau, administration système avancée, supervision de parc informatique, sécurisation des données.
+            Apprentissage de la conception d'architectures réseau, de l'administration système, de la supervision de parc informatique et des bases de la cybersécurité.
           </p>
         </div>
         <div class="info-card">
           <h3><i class="fa-solid fa-book-bookmark" aria-hidden="true"></i> Le BTS SIO option SISR</h3>
           <p style="font-size: 15.5px; color: var(--text-muted);">
-            L'option SISR forme des spécialistes capables de gérer le réseau d'une entreprise, de déployer des services et d'assurer la continuité d'activité.
+            L'option SISR (Solutions d'Infrastructure, Systèmes et Réseaux) prépare aux métiers d'administrateur système et réseau, technicien d'infrastructure et support réseau.
           </p>
         </div>
       </div>
@@ -413,37 +426,138 @@
           </ul>
         </div>
         <div class="info-card">
-          <h3><i class="fa-solid fa-user-gear" aria-hidden="true"></i> Mon Service & Missions</h3>
+          <h3><i class="fa-solid fa-user-gear" aria-hidden="true"></i> Service & Compétences en cours de pratique</h3>
           <p style="font-size: 15px; color: var(--text-muted); margin-bottom: 12px;">
             <strong>Service :</strong> Direction des Systèmes d'Information / Support IT
           </p>
           <ul style="font-size: 14.5px; color: var(--text-muted); padding-left: 20px; display: flex; flex-direction: column; gap: 8px;">
-            <li>Support niveau 1/2 aux collaborateurs et résolution d'incidents.</li>
-            <li>Administration Active Directory, gestion des accès et droits.</li>
-            <li>Supervision du parc informatique, des équipements réseau et sauvegardes.</li>
+            <li>Découverte et prise en charge du support niveau 1/2 aux collaborateurs.</li>
+            <li>Pratique de l'administration Active Directory (gestion des accès et utilisateurs).</li>
+            <li>Observation et participation à la supervision du parc et des sauvegardes.</li>
+            <li>Déploiement assisté de postes de travail (mastering, MDT/WDS).</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- Compétences -->
+    <!-- Projets / Réalisations E4 -->
+    <section id="projets" class="reveal">
+      <div class="section-head">
+        <h2 class="section-title">Projets & Travaux Pratiques SISR</h2>
+      </div>
+
+      <div class="grid-2">
+        <div class="info-card">
+          <h3><i class="fa-solid fa-server" aria-hidden="true"></i> TP Active Directory & GPO</h3>
+          <p style="font-size: 15px; color: var(--text-muted);">
+            Projet TP sur la mise en place d'un domaine Active Directory sous Windows Server. Manipulation des services DNS/DHCP et création de stratégies de groupe (GPO) de test.
+          </p>
+          <div class="tech-badges">
+            <span class="badge">Windows Server</span>
+            <span class="badge">Active Directory</span>
+            <span class="badge">GPO</span>
+            <span class="badge">DHCP/DNS</span>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h3><i class="fa-solid fa-network-wired" aria-hidden="true"></i> Lab Segmentation Réseau & Firewall</h3>
+          <p style="font-size: 15px; color: var(--text-muted);">
+            Atelier pratique sur la création d'un réseau virtuel avec PfSense. Exercices de découpage en VLANs et configuration de règles simples de pare-feu.
+          </p>
+          <div class="tech-badges">
+            <span class="badge">PfSense</span>
+            <span class="badge">VLAN</span>
+            <span class="badge">VirtualBox</span>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h3><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Initiation à la Supervision (Zabbix)</h3>
+          <p style="font-size: 15px; color: var(--text-muted);">
+            Déploiement de test d'une solution Zabbix sur machine virtuelle Linux Debian pour comprendre la remontée d'alertes et d'indicateurs de performance.
+          </p>
+          <div class="tech-badges">
+            <span class="badge">Debian</span>
+            <span class="badge">Zabbix</span>
+            <span class="badge">SNMP</span>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h3><i class="fa-solid fa-code" aria-hidden="true"></i> Automatisation basique (Bash / Python)</h3>
+          <p style="font-size: 15px; color: var(--text-muted);">
+            Apprentissage du scripting pour automatiser des tâches répétitives (sauvegardes d'archives localement, scripts de vérification réseau).
+          </p>
+          <div class="tech-badges">
+            <span class="badge">Python</span>
+            <span class="badge">Bash</span>
+            <span class="badge">PowerShell</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compétences Techniques (En cours d'acquisition) -->
     <section id="competences" class="reveal">
       <div class="section-head">
-        <h2 class="section-title">Compétences Techniques</h2>
+        <h2 class="section-title">Compétences en cours d'acquisition</h2>
       </div>
 
       <div class="grid-3">
         <div class="info-card">
-          <h3><i class="fa-solid fa-network-wired" aria-hidden="true"></i> Réseau</h3>
-          <p style="font-size: 15px; color: var(--text-muted);">TCP/IP, IPv4, VLANs, VPN, Routage, Commutation.</p>
+          <h3><i class="fa-solid fa-network-wired" aria-hidden="true"></i> Réseaux (En apprentissage)</h3>
+          <p style="font-size: 15px; color: var(--text-muted);">Notions de TCP/IP, adressage IPv4/IPv6, concepts de VLANs, VPN, et prise en main de Wireshark.</p>
         </div>
         <div class="info-card">
-          <h3><i class="fa-solid fa-server" aria-hidden="true"></i> Systèmes</h3>
-          <p style="font-size: 15px; color: var(--text-muted);">Windows Server (AD DS, DNS, DHCP), Linux (Debian, Ubuntu, Mint), Scripting Python/Bash.</p>
+          <h3><i class="fa-solid fa-server" aria-hidden="true"></i> Systèmes (En apprentissage)</h3>
+          <p style="font-size: 15px; color: var(--text-muted);">Bases de Windows Server (AD DS, DNS, DHCP, GPO), environnements Linux (Debian, Ubuntu) et initiation au scripting.</p>
         </div>
         <div class="info-card">
-          <h3><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Cybersécurité</h3>
-          <p style="font-size: 15px; color: var(--text-muted);">Hardening d'OS, bonnes pratiques ANSSI, Reverse Eng. bas niveau.</p>
+          <h3><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Sécurité (En sensibilisation)</h3>
+          <p style="font-size: 15px; color: var(--text-muted);">Découverte des principes de hardening OS, gestion des accès utilisateur et recommandations de l'ANSSI.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Veille Technologique -->
+    <section id="veille" class="reveal">
+      <div class="section-head">
+        <h2 class="section-title">Veille Technologique</h2>
+      </div>
+
+      <div class="info-card">
+        <h3><i class="fa-solid fa-rss" aria-hidden="true"></i> Sujet : "L'évolution des vulnérabilités Active Directory & Cybersécurité"</h3>
+        <p style="font-size: 15.5px; color: var(--text-muted); margin-bottom: 16px;">
+          Suivi des actualités liées à la sécurité informatique, aux failles Zero-Day courantes et à la sécurisation des architectures hybrides.
+        </p>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <span class="tag"><i class="fa-solid fa-newspaper"></i> ANSSI / CERT-FR</span>
+          <span class="tag"><i class="fa-solid fa-rss"></i> Feedly / Rss</span>
+          <span class="tag"><i class="fa-solid fa-shield"></i> CISA Vulnerabilities</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Épreuves & Documents BTS -->
+    <section id="documents" class="reveal">
+      <div class="section-head">
+        <h2 class="section-title">Documents & Épreuves BTS</h2>
+      </div>
+
+      <div class="grid-2">
+        <div class="info-card" style="text-align: center;">
+          <i class="fa-solid fa-file-pdf" style="font-size: 40px; color: var(--warm-accent); margin-bottom: 12px;"></i>
+          <h3>Tableau de Synthèse E4</h3>
+          <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 18px;">Récapitulatif des compétences travaillées durant la formation.</p>
+          <a href="#" class="contact-btn" style="justify-content: center;"><i class="fa-solid fa-download"></i> Télécharger (PDF)</a>
+        </div>
+
+        <div class="info-card" style="text-align: center;">
+          <i class="fa-solid fa-id-card" style="font-size: 40px; color: var(--green-primary); margin-bottom: 12px;"></i>
+          <h3>Mon CV</h3>
+          <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 18px;">Curriculum Vitae retraçant mon parcours académique et professionnel.</p>
+          <a href="#" class="contact-btn" style="justify-content: center;"><i class="fa-solid fa-download"></i> Télécharger le CV</a>
         </div>
       </div>
     </section>
@@ -451,7 +565,7 @@
     <!-- Footer Contact & Mentions Légales RGPD -->
     <footer class="contact reveal" id="contact">
       <h2 style="font-size: 28px; color: var(--green-primary); margin-bottom: 12px;">Contact & Liens Réseaux</h2>
-      <p style="font-size: 16px; color: var(--text-muted); margin-bottom: 26px;">Disponible pour échanger sur mon parcours et mes projets.</p>
+      <p style="font-size: 16px; color: var(--text-muted); margin-bottom: 26px;">Disponible pour échanger sur mon parcours d'apprentissage et mes projets.</p>
       
       <div style="display: flex; gap: 16px; flex-wrap: wrap;">
         <a href="mailto:lohanf77@gmail.com" class="contact-btn"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Email</a>
@@ -469,16 +583,19 @@
 
   </main>
 
-  <!-- Navigation Latérale Agrandie -->
+  <!-- Navigation Latérale -->
   <nav class="sidebar-right" aria-label="Menu principal">
     <div class="nav-header">
       <i class="fa-solid fa-compass" aria-hidden="true"></i> Navigation
     </div>
     <ul>
       <li><a href="#presentation" class="nav-link"><i class="fa-solid fa-user" aria-hidden="true"></i> Présentation</a></li>
-      <li><a href="#ecole" class="nav-link"><i class="fa-solid fa-school" aria-hidden="true"></i> École (UTEC)</a></li>
-      <li><a href="#entreprise" class="nav-link"><i class="fa-solid fa-building" aria-hidden="true"></i> Entreprise (VINCI)</a></li>
+      <li><a href="#ecole" class="nav-link"><i class="fa-solid fa-school" aria-hidden="true"></i> UTEC Melun</a></li>
+      <li><a href="#entreprise" class="nav-link"><i class="fa-solid fa-building" aria-hidden="true"></i> VINCI</a></li>
+      <li><a href="#projets" class="nav-link"><i class="fa-solid fa-folder-open" aria-hidden="true"></i> Travaux / TP</a></li>
       <li><a href="#competences" class="nav-link"><i class="fa-solid fa-gears" aria-hidden="true"></i> Compétences</a></li>
+      <li><a href="#veille" class="nav-link"><i class="fa-solid fa-rss" aria-hidden="true"></i> Veille Tech</a></li>
+      <li><a href="#documents" class="nav-link"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> Documents</a></li>
       <li><a href="#contact" class="nav-link"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Contact</a></li>
     </ul>
   </nav>
@@ -525,7 +642,7 @@
       let current = '';
       sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        if (pageYOffset >= (sectionTop - 150)) {
+        if (window.pageYOffset >= (sectionTop - 180)) {
           current = section.getAttribute('id');
         }
       });
@@ -538,29 +655,31 @@
       });
     });
 
-    /* Gestion Modal Mentions Légales */
+    /* Modale Mentions Légales */
     const modal = document.getElementById('legal-modal');
     const openBtn = document.getElementById('open-legal');
     const closeBtn = document.getElementById('close-legal');
 
-    openBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      modal.style.display = 'flex';
-    });
+    if(openBtn && modal && closeBtn) {
+      openBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.style.display = 'flex';
+      });
 
-    closeBtn.addEventListener('click', () => {
-      modal.style.display = 'none';
-    });
-
-    window.addEventListener('click', (e) => {
-      if (e.target === modal) modal.style.display = 'none';
-    });
-
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.style.display === 'flex') {
+      closeBtn.addEventListener('click', () => {
         modal.style.display = 'none';
-      }
-    });
+      });
+
+      window.addEventListener('click', (e) => {
+        if (e.target === modal) modal.style.display = 'none';
+      });
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.style.display === 'flex') {
+          modal.style.display = 'none';
+        }
+      });
+    }
   });
 </script>
 
