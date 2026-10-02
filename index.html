@@ -224,7 +224,7 @@
     .stat-label { font-size: 14px; font-weight: 600; color: var(--text-muted); margin-top: 4px; }
 
     /* Footer & Contact */
-    footer.contact { 
+    footer.contact-section { 
       background: var(--green-light); padding: 50px 40px; 
       border-radius: 24px; margin: 40px 0; border: 1px solid var(--card-border);
     }
@@ -496,14 +496,14 @@
         <i class="fa-solid fa-file-pdf" style="font-size: 44px; color: var(--green-primary); margin-bottom: 12px;"></i>
         <h3>Mon CV Professionnel</h3>
         <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 18px;">Téléchargez mon Curriculum Vitae au format PDF (Mise à jour ATS)[cite: 1].</p>
-        <a href="CV_Froissard_Samain_Lohan_ATS-1.pdf" download="CV_Froissard_Samain_Lohan.pdf" class="contact-btn" style="justify-content: center;">
+        <a href="./CV_Froissard_Samain_Lohan_ATS-1.pdf" download="CV_Froissard_Samain_Lohan.pdf" class="contact-btn" style="justify-content: center;">
           <i class="fa-solid fa-download" aria-hidden="true"></i> Télécharger le CV
         </a>
       </div>
     </section>
 
     <!-- Footer Contact & Mentions Légales RGPD -->
-    <footer class="contact reveal" id="contact">
+    <footer class="contact-section reveal" id="contact">
       <h2 style="font-size: 28px; color: var(--green-primary); margin-bottom: 12px;">Contact & Liens Réseaux</h2>
       <p style="font-size: 16px; color: var(--text-muted); margin-bottom: 26px;">N'hésitez pas à me contacter pour toute information ou opportunité d'alternance[cite: 1].</p>
       
@@ -572,24 +572,35 @@
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    /* Active State Navigation au scroll */
+    /* Active State Navigation au scroll & clic */
     const sections = document.querySelectorAll('header, section, footer');
     const navLinks = document.querySelectorAll('.nav-link');
+
+    const setActiveLink = (id) => {
+      navLinks.forEach(link => {
+        if (link.getAttribute('href') === `#${id}`) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    };
 
     window.addEventListener('scroll', () => {
       let current = '';
       sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        if (window.pageYOffset >= (sectionTop - 180)) {
+        if (window.pageYOffset >= (sectionTop - 220)) {
           current = section.getAttribute('id');
         }
       });
+      if (current) setActiveLink(current);
+    });
 
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-          link.classList.add('active');
-        }
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const targetId = link.getAttribute('href').replace('#', '');
+        setActiveLink(targetId);
       });
     });
 
